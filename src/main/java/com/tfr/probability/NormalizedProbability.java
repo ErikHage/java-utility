@@ -90,8 +90,8 @@ public class NormalizedProbability<T> {
         isNormalized = normalizationFactor != 1;
 
         for(Item i: items) {
-            Double normalizaedWeight = i.weight * normalizationFactor;
-            probability.put(cumulative += normalizaedWeight, i.value);
+            Double normalizedWeight = i.weight * normalizationFactor;
+            probability.put(cumulative += normalizedWeight, i.value);
         }
     }
 
