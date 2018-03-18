@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  * Tests for com.tfr.probability.NormalizedProbability
  * Created by Erik on 4/11/2017.
  */
-public class TestNormailzedProbability {
+public class NormailzedProbabilityTest {
 
     private NormalizedProbability<String> normalizedProbability;
 
