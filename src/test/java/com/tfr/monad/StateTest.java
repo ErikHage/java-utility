@@ -22,18 +22,18 @@ public class StateTest {
 
     @Test
     public void testValidate_ExpectSuccess() {
-        state.validate((v) -> doThrow(false));
+        state.validate(v -> doThrow(false));
     }
 
     @Test
     public void testValidate_GivenMultipleValidations_ExpectSuccess() {
-        state.validate((v) -> doThrow(false))
-                .validate((v) -> doThrow(false));
+        state.validate(v -> doThrow(false))
+                .validate(v -> doThrow(false));
     }
 
     @Test (expected = ValidationException.class)
     public void testValidate_ExpectFailure() {
-        state.validate((v) -> doThrow(true));
+        state.validate(v -> doThrow(true));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class StateTest {
 
     @Test
     public void testFlatMap_GivenTransformationReturnsWrappedValue_ExpectTransformedValue() {
-        State<String> result = state.flatMap((v) -> State.of(v.toString()));
+        State<String> result = state.flatMap(v -> State.of(v.toString()));
         assertEquals("10", result.getValue());
     }
 

@@ -26,15 +26,24 @@ public class TransformationTest {
         assertEquals(1, result, 0);
     }
 
-    @Test (expected = Exception.class)
+    @Test (expected = TransformationException.class)
     public void testExecute_GivenInvalidInput_ExpectException() {
         transformation.execute("abc");
+    }
+
+    @Test (expected = TransformationException.class)
+    public void testTransformationException() {
+        throw new TransformationException("message");
     }
 
     private static class TestTransformation implements Transformation<String, Integer> {
         @Override
         public Integer execute(String input) throws TransformationException {
-            return Integer.parseInt(input);
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException ex) {
+                throw new TransformationException("failed to transform", ex);
+            }
         }
     }
 }

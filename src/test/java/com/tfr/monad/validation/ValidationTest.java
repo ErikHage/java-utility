@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class ValidationTest {
@@ -28,6 +29,8 @@ public class ValidationTest {
         Result result = validation.validate(10);
 
         assertTrue(result instanceof SuccessfulValidation);
+        assertTrue(result.isSuccessful());
+        assertEquals("Validation 'com.tfr.monad.validation.ValidationTest$TestValidation' was successful", result.getMessage());
     }
 
     @Test
@@ -35,6 +38,8 @@ public class ValidationTest {
         Result result = validation.validate(11);
 
         assertTrue(result instanceof FailedValidation);
+        assertFalse(result.isSuccessful());
+        assertEquals("Validation 'com.tfr.monad.validation.ValidationTest$TestValidation' failed with reason: Value did not equal 10", result.getMessage());
     }
 
     @Test
@@ -45,6 +50,11 @@ public class ValidationTest {
     @Test (expected = ValidationException.class)
     public void testVerify_GivenInvalidInput_ExpectException() {
         validation.verify(11);
+    }
+
+    @Test (expected = ValidationException.class)
+    public void testValidationException() {
+        throw new ValidationException("message", new Exception("caused by"));
     }
 
     private static class TestValidation implements Validation<Integer> {

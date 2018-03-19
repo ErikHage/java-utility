@@ -4,11 +4,11 @@ import com.tfr.monad.transformation.Transformation;
 import com.tfr.monad.validation.Validation;
 import com.tfr.monad.validation.ValidationException;
 
-public class State<IN> implements Monad<IN> {
+public class State<IN> {
 
     protected IN value;
 
-    protected State(IN value) {
+    private State(IN value) {
         this.value = value;
     }
 
@@ -16,14 +16,12 @@ public class State<IN> implements Monad<IN> {
         return new State<>(value);
     }
 
-    @Override
     public <OUT> State<OUT> map(Transformation<IN, OUT> transformation) {
         return new State<>(transformation.execute(value));
     }
 
-    @Override
-    public <OUT> State<OUT> flatMap(Transformation<IN, Monad<OUT>> transformation) {
-        State<OUT> result = (State<OUT>) transformation.execute(value);
+    public <OUT> State<OUT> flatMap(Transformation<IN, State<OUT>> transformation) {
+        State<OUT> result = transformation.execute(value);
         return new State<>(result.value);
     }
 
