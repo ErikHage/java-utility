@@ -7,28 +7,35 @@ public class RingBuffer<T> {
 
     private T[] buffer;
     private int currentSize;
-    private int nextIndex;
     private int head;
+    private int tail;
 
     @SuppressWarnings("unchecked")
     public RingBuffer(int size) {
         this.buffer = (T[]) new Object[size];
         this.currentSize = 0;
-        this.nextIndex = 0;
         this.head = 0;
+        this.tail = 0;
     }
 
     public void add(T item) {
-        buffer[nextIndex] = item;
-        if (head == nextIndex && currentSize > 0) {
-            head = incrementIndex(head);
+        buffer[tail] = item;
+        if (head == tail && currentSize > 0) {
+            head = indexAfter(head);
         }
-        nextIndex = incrementIndex(nextIndex);
-        currentSize += incrementSize();
+        tail = indexAfter(tail);
+        conditionallyIncrementSize();
     }
 
     public int getSize() {
-        return this.currentSize;
+        return currentSize;
+    }
+
+    public T get(int index) {
+        if (index > currentSize - 1) {
+            throw new IndexOutOfBoundsException("Index " + index + " was out of bounds");
+        }
+        return buffer[indexAfter(head, index)];
     }
 
     public T remove() {
@@ -36,34 +43,41 @@ public class RingBuffer<T> {
             throw new UnderflowException("Tried to remove from empty buffer");
         }
         T item = buffer[head];
-        currentSize--;
         buffer[head] = null;
-        head = incrementIndex(head);
+        head = indexAfter(head);
+        currentSize--;
         return item;
     }
 
     public List<T> getAll() {
         List<T> items = new ArrayList<>();
-        int pointer = nextIndex;
         int count = 0;
 
         while(count < buffer.length) {
-            if (buffer[pointer] != null) {
-                items.add(buffer[pointer]);
+            T item = buffer[indexAfter(tail, count)];
+            if (item != null) {
+                items.add(item);
             }
-            pointer = (pointer == buffer.length - 1) ? 0 : pointer + 1;
             count++;
         }
 
         return items;
     }
 
-    private int incrementIndex(int index) {
-        return (index == buffer.length - 1) ? 0 : index + 1;
+    private int indexAfter(int index) {
+        return indexAfter(index, 1);
     }
 
-    private int incrementSize() {
-        return (currentSize < buffer.length) ? 1 : 0;
+    private int indexAfter(int index, int incrementBy) {
+        while (incrementBy > 0) {
+            index = (index == buffer.length - 1) ? 0 : index + 1;
+            incrementBy--;
+        }
+        return index;
+    }
+
+    private void conditionallyIncrementSize() {
+        currentSize += (currentSize < buffer.length) ? 1 : 0;
     }
 
     static class UnderflowException extends RuntimeException {
