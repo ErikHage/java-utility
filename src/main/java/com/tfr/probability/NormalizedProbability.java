@@ -1,6 +1,7 @@
 package com.tfr.probability;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.security.InvalidParameterException;
 import java.util.*;
 
@@ -15,10 +16,10 @@ import java.util.*;
 public class NormalizedProbability<T> {
 
     private boolean isNormalized;
-    private int roundingScale;
-    private NavigableMap<Double, T> probability;
-    private List<Item> items;
-    private Random random;
+    private final int roundingScale;
+    private final NavigableMap<Double, T> probability;
+    private final List<Item> items;
+    private final Random random;
 
     /**
      * Instantiate a new NormalizedProbability with a specified rounding scale
@@ -68,7 +69,7 @@ public class NormalizedProbability<T> {
      */
     public T get(Double roll) {
         Map.Entry<Double, T> entry;
-        roll = new BigDecimal(roll).setScale(roundingScale, BigDecimal.ROUND_HALF_UP).doubleValue();
+        roll = new BigDecimal(roll).setScale(roundingScale, RoundingMode.HALF_UP).doubleValue();
 
         if(roll < 0 || roll > 100) {
             throw new InvalidParameterException("Value must be between 0 and 100");
@@ -83,14 +84,14 @@ public class NormalizedProbability<T> {
      * Refreshes the NavigableMap, recalculating the normalized weights of all added items
      */
     private void refreshMap() {
-        Double cumulative = 0.0;
+        double cumulative = 0.0;
         Double normalizationFactor = getNormalizationFactor();
         probability.clear();
 
         isNormalized = normalizationFactor != 1;
 
         for(Item i: items) {
-            Double normalizedWeight = i.weight * normalizationFactor;
+            double normalizedWeight = i.weight * normalizationFactor;
             probability.put(cumulative += normalizedWeight, i.value);
         }
     }
