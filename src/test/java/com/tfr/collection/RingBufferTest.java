@@ -1,17 +1,18 @@
 package com.tfr.collection;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RingBufferTest {
 
     private RingBuffer<Integer> rb;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         rb = new RingBuffer<>(3);
     }
@@ -37,10 +38,12 @@ public class RingBufferTest {
         assertEquals(1, rb.get(0), 0);
     }
 
-    @Test (expected = IndexOutOfBoundsException.class)
+    @Test
     public void testGet_GivenEmpty_ExpectException() {
-        assertContents(List.of());
-        rb.get(0);
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            assertContents(List.of());
+            rb.get(0);
+        });
     }
 
     @Test
@@ -53,9 +56,11 @@ public class RingBufferTest {
         assertEquals(4, rb.remove(), 0);
     }
 
-    @Test (expected = RingBuffer.UnderflowException.class)
+    @Test
     public void testRemove_GivenEmpty_ExpectUnderflowException() {
-        rb.remove();
+        assertThrows(RingBuffer.UnderflowException.class, () -> {
+            rb.remove();
+        });
     }
 
     private void assertContents(List<Integer> contents) {

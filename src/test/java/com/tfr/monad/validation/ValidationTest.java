@@ -3,18 +3,16 @@ package com.tfr.monad.validation;
 import com.tfr.monad.model.FailedValidation;
 import com.tfr.monad.model.Result;
 import com.tfr.monad.model.SuccessfulValidation;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ValidationTest {
 
     private Validation<Integer> validation;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         validation = new TestValidation();
     }
@@ -47,14 +45,18 @@ public class ValidationTest {
         validation.verify(10);
     }
 
-    @Test (expected = ValidationException.class)
+    @Test
     public void testVerify_GivenInvalidInput_ExpectException() {
-        validation.verify(11);
+        assertThrows(ValidationException.class, () -> {
+            validation.verify(11);
+        });
     }
 
-    @Test (expected = ValidationException.class)
+    @Test
     public void testValidationException() {
-        throw new ValidationException("message", new Exception("caused by"));
+        assertThrows(ValidationException.class, () -> {
+            throw new ValidationException("message", new Exception("caused by"));
+        });
     }
 
     private static class TestValidation implements Validation<Integer> {

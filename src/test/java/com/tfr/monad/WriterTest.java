@@ -2,17 +2,17 @@ package com.tfr.monad;
 
 import com.tfr.monad.model.FailedValidation;
 import com.tfr.monad.validation.ValidationException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WriterTest {
 
     private Writer<Integer> writer;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         writer = Writer.of(10);
     }

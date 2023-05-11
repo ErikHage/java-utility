@@ -1,16 +1,17 @@
 package com.tfr.monad;
 
 import com.tfr.monad.validation.ValidationException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StateTest {
 
     private State<Integer> state;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         state = State.of(10);
     }
@@ -31,9 +32,11 @@ public class StateTest {
                 .validate(v -> doThrow(false));
     }
 
-    @Test (expected = ValidationException.class)
+    @Test
     public void testValidate_ExpectFailure() {
-        state.validate(v -> doThrow(true));
+        assertThrows(ValidationException.class, () -> {
+            state.validate(v -> doThrow(true));
+        });
     }
 
     @Test

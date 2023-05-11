@@ -1,20 +1,17 @@
 package com.tfr.probability;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import java.security.InvalidParameterException;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
 public class WeightedProbabilityTest {
 
     private final String a = "A";
@@ -24,12 +21,12 @@ public class WeightedProbabilityTest {
     @Mock
     private Random random;
 
-    @Before
+    @BeforeEach
     public void beforeEach() {
         closeable = MockitoAnnotations.openMocks(this);
     }
 
-    @After
+    @AfterEach
     public void afterEach() throws Exception {
         closeable.close();
     }
@@ -61,7 +58,7 @@ public class WeightedProbabilityTest {
 
         verify(random, times(1)).nextDouble();
 
-        assertEquals(String.format("Expected %s, but got %s", a, result), a, result);
+        assertEquals(a, result, String.format("Expected %s, but got %s", a, result));
     }
 
     @Test
@@ -77,13 +74,15 @@ public class WeightedProbabilityTest {
 
         verify(random, times(1)).nextDouble();
 
-        assertEquals(String.format("Expected %s, but got %s", b, result), b, result);
+        assertEquals(b, result, String.format("Expected %s, but got %s", b, result));
     }
 
-    @Test (expected = InvalidParameterException.class)
+    @Test
     public void testGet_GivenWeightBelowRange_ExpectInvalidParameterException() {
         WeightedProbability<String> weightedProbability = new WeightedProbability<>();
 
-        weightedProbability.addOutcome(-2.0, a);
+        assertThrows(InvalidParameterException.class, () -> {
+            weightedProbability.addOutcome(-2.0, a);
+        });
     }
 }

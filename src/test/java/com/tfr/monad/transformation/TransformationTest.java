@@ -1,15 +1,16 @@
 package com.tfr.monad.transformation;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TransformationTest {
 
     private Transformation<String, Integer> transformation;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         transformation = new TestTransformation();
     }
@@ -26,14 +27,18 @@ public class TransformationTest {
         assertEquals(1, result, 0);
     }
 
-    @Test (expected = TransformationException.class)
+    @Test
     public void testExecute_GivenInvalidInput_ExpectException() {
-        transformation.execute("abc");
+        assertThrows(TransformationException.class, () -> {
+            transformation.execute("abc");
+        });
     }
 
-    @Test (expected = TransformationException.class)
+    @Test
     public void testTransformationException() {
-        throw new TransformationException("message");
+        assertThrows(TransformationException.class, () -> {
+            throw new TransformationException("message");
+        });
     }
 
     private static class TestTransformation implements Transformation<String, Integer> {
