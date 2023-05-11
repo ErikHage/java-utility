@@ -1,28 +1,43 @@
 package com.tfr.probability;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.security.InvalidParameterException;
+import java.util.Random;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class WeightedProbabilityTest {
 
-    private WeightedProbability<String> weightedProbability;
+    private final String a = "A";
+    private final String b = "B";
 
-    private String a = "A";
-    private String b = "B";
-    private String c = "C";
-    private String d = "D";
+    private AutoCloseable closeable;
+    @Mock
+    private Random random;
 
     @Before
-    public void setUp() {
-        weightedProbability = new WeightedProbability<>();
+    public void beforeEach() {
+        closeable = MockitoAnnotations.openMocks(this);
+    }
+
+    @After
+    public void afterEach() throws Exception {
+        closeable.close();
     }
 
     @Test
     public void testGet_ExpectResultFromAddedOutcomes() {
+        WeightedProbability<String> weightedProbability = new WeightedProbability<>();
+
         weightedProbability.addOutcome(500, a);
         weightedProbability.addOutcome(1000, b);
 
@@ -34,29 +49,41 @@ public class WeightedProbabilityTest {
     }
 
     @Test
-    public void testGet_ExpectResultsToBeProportionalToWeight() {
+    public void testGet_GivenRandomRollsBelow500_ExpectOutcomeA() {
+        when(random.nextDouble()).thenReturn(400.0/1500.0);
+
+        WeightedProbability<String> weightedProbability = new WeightedProbability<>(random);
+
         weightedProbability.addOutcome(500, a);
         weightedProbability.addOutcome(1000, b);
 
-        int outcomesA = 0;
-        int outcomesB = 0;
+        String result = weightedProbability.get();
 
-        for (int i = 0; i < 10000; i++) {
-            String result = weightedProbability.get();
+        verify(random, times(1)).nextDouble();
 
-            if (result.equals(a)) {
-                outcomesA++;
-            } else {
-                outcomesB++;
-            }
-        }
+        assertEquals(String.format("Expected %s, but got %s", a, result), a, result);
+    }
 
-        // there is always a chance that this could fail, it's not exact
-        assertEquals(String.format("Expected A or B to be approximately 1:2, but got %s:%s", outcomesA, outcomesB), outcomesA*2, outcomesB, 500);
+    @Test
+    public void testGet_GivenRandomRollsAbove500_ExpectOutcomeB() {
+        when(random.nextDouble()).thenReturn(750.0/1500.0);
+
+        WeightedProbability<String> weightedProbability = new WeightedProbability<>(random);
+
+        weightedProbability.addOutcome(500, a);
+        weightedProbability.addOutcome(1000, b);
+
+        String result = weightedProbability.get();
+
+        verify(random, times(1)).nextDouble();
+
+        assertEquals(String.format("Expected %s, but got %s", b, result), b, result);
     }
 
     @Test (expected = InvalidParameterException.class)
     public void testGet_GivenWeightBelowRange_ExpectInvalidParameterException() {
+        WeightedProbability<String> weightedProbability = new WeightedProbability<>();
+
         weightedProbability.addOutcome(-2.0, a);
     }
 }
