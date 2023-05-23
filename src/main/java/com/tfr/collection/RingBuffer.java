@@ -5,7 +5,7 @@ import java.util.List;
 
 public class RingBuffer<T> {
 
-    private T[] buffer;
+    private final T[] buffer;
     private int currentSize;
     private int head;
     private int tail;
