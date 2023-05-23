@@ -1,5 +1,6 @@
 package com.tfr.collection.heap;
 
+import com.tfr.collection.exception.OverflowException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

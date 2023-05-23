@@ -1,5 +1,7 @@
 package com.tfr.collection.heap;
 
+import com.tfr.collection.exception.OverflowException;
+
 /**
  *  A Min-Heap is a complete binary tree in which the value in each internal node is smaller than or equal to the
  *  values in the children of that node. Mapping the elements of a heap into an array is trivial: if a node is stored

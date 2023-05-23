@@ -1,4 +1,4 @@
-package com.tfr.collection.heap;
+package com.tfr.collection.exception;
 
 public class OverflowException extends RuntimeException {
 
