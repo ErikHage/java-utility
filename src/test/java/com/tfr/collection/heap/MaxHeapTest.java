@@ -4,12 +4,13 @@ import com.tfr.collection.exception.OverflowException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class MinHeapTest {
+public class MaxHeapTest {
 
     @Test
     public void testPrint_ExpectSuccess() {
-        MinHeap<String> heap = new MinHeap<>(5);
+        MaxHeap<String> heap = new MaxHeap<>(5);
 
         heap.insert("a");
         heap.insert("b");
@@ -20,8 +21,8 @@ public class MinHeapTest {
     }
 
     @Test
-    public void testInsert_GivenFullMinHeap_ExpectOverflowException() {
-        MinHeap<String> heap = new MinHeap<>(2);
+    public void testInsert_GivenFullHeap_ExpectOverflowException() {
+        MaxHeap<String> heap = new MaxHeap<>(2);
 
         heap.insert("a");
         heap.insert("b");
@@ -31,25 +32,27 @@ public class MinHeapTest {
     }
 
     @Test
-    public void testInsertAndPeek_ExpectMinValue() {
-        MinHeap<String> heap = new MinHeap<>(5);
+    public void testInsertAndPeek_ExpectMaxValue() {
+        MaxHeap<String> heap = new MaxHeap<>(5);
 
         heap.insert("a");
-        heap.insert("b");
-        heap.insert("c");
         heap.insert("d");
+        heap.insert("c");
+        heap.insert("b");
 
-        assertEquals("a", heap.peek());
+        assertEquals("d", heap.peek());
     }
 
     @Test
     public void testInsertAndRemove_ExpectNullNotAdded() {
-        MinHeap<String> heap = new MinHeap<>(5);
+        MaxHeap<String> heap = new MaxHeap<>(5);
 
         heap.insert("a");
         heap.insert("b");
         heap.insert(null);
         heap.insert("d");
+
+        heap.print();
 
         assertNotNull(heap.remove());
         assertNotNull(heap.remove());
@@ -59,46 +62,47 @@ public class MinHeapTest {
 
     @Test
     public void testInsertAndRemove_ExpectDuplicatesAllowed() {
-        MinHeap<String> heap = new MinHeap<>(5);
+        MaxHeap<String> heap = new MaxHeap<>(5);
 
         heap.insert("a");
         heap.insert("c");
         heap.insert("b");
         heap.insert("a");
 
-        assertEquals("a", heap.remove());
-        assertEquals("a", heap.remove());
-        assertEquals("b", heap.remove());
         assertEquals("c", heap.remove());
+        assertEquals("b", heap.remove());
+        assertEquals("a", heap.remove());
+        assertEquals("a", heap.remove());
     }
 
     @Test
     public void testRemove_ExpectRemoveInOrder() {
-        MinHeap<String> heap = new MinHeap<>(5);
+        MaxHeap<String> heap = new MaxHeap<>(5);
 
-        heap.insert("a");
         heap.insert("b");
-        heap.insert("c");
+        heap.insert("a");
         heap.insert("d");
+        heap.insert("c");
 
-        assertEquals("a", heap.remove());
-        assertEquals("b", heap.remove());
-        assertEquals("c", heap.remove());
+        heap.print();
+
         assertEquals("d", heap.remove());
+        assertEquals("c", heap.remove());
+        assertEquals("b", heap.remove());
+        assertEquals("a", heap.remove());
     }
 
     @Test
     public void testRemove_GivenEmptyHeap_ExpectNull() {
-        MinHeap<String> heap = new MinHeap<>(5);
+        MaxHeap<String> heap = new MaxHeap<>(5);
 
         assertNull(heap.remove());
     }
 
     @Test
     public void testPeek_GivenEmptyHeap_ExpectNull() {
-        MinHeap<String> heap = new MinHeap<>(5);
+        MaxHeap<String> heap = new MaxHeap<>(5);
 
         assertNull(heap.peek());
     }
-
 }
