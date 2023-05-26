@@ -96,4 +96,11 @@ public class StringExpressionEvaluatorTest {
 
         assertEquals(100, result);
     }
+
+    @Test
+    public void testEvaluate_GivenAllOperators_ExpectOrderOfOperationsRespected() {
+        Double result = StringExpressionEvaluator.evaluate("5 * 10 - 2 * ( 6 + 100 )");
+
+        assertEquals(-162, result);
+    }
 }

@@ -26,6 +26,7 @@ public class StringExpressionEvaluator {
                 }
 
                 values.push(Double.parseDouble(sb.toString()));
+                printStacks(values, operations);
                 i--;
             } else if (tokens[i] == '(') {
                 operations.push(tokens[i]);
@@ -33,20 +34,24 @@ public class StringExpressionEvaluator {
                 while (operations.peek() != '(') {
                     double result = applyOperation(operations.pop(), values.pop(), values.pop());
                     values.push(result);
+                    printStacks(values, operations);
                 }
                 operations.pop();
             } else if (isOperator(tokens[i])) {
                 while (!operations.isEmpty() && hasPrecedence(tokens[i], operations.peek())) {
                     double result = applyOperation(operations.pop(), values.pop(), values.pop());
                     values.push(result);
+                    printStacks(values, operations);
                 }
                 operations.push(tokens[i]);
+                printStacks(values, operations);
             }
         }
 
         while (!operations.isEmpty()) {
             double result = applyOperation(operations.pop(), values.pop(), values.pop());
             values.push(result);
+            printStacks(values, operations);
         }
 
         return values.pop();
@@ -93,6 +98,11 @@ public class StringExpressionEvaluator {
         }
 
         return 0;
+    }
+
+    private static void printStacks(Stack<Double> values, Stack<Character> operators) {
+        System.out.println("vals: " + values);
+        System.out.println("ops : " + operators);
     }
 
 }
