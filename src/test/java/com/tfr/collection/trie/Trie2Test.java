@@ -9,64 +9,86 @@ public class Trie2Test {
 
     @Test
     public void testEmpty_GivenNoElements_ExpectTrue() {
-        Trie2 Trie2 = new Trie2();
+        Trie2 trie = new Trie2();
 
-        assertTrue(Trie2.isEmpty());
+        assertTrue(trie.isEmpty());
     }
 
     @Test
     public void testEmpty_GivenElements_ExpectFalse() {
-        Trie2 Trie2 = createTestTrie2();
+        Trie2 trie = createTestTrie2();
 
-        assertFalse(Trie2.isEmpty());
+        assertFalse(trie.isEmpty());
     }
 
     @Test
     public void testSearch_GivenWordsAdded_GivenWordInTrie2_ExpectTrue() {
-        Trie2 Trie2 = createTestTrie2();
+        Trie2 trie = createTestTrie2();
 
-        assertTrue(Trie2.search("programming"));
-        assertTrue(Trie2.search("is"));
-        assertTrue(Trie2.search("a"));
-        assertTrue(Trie2.search("way"));
-        assertTrue(Trie2.search("of"));
-        assertTrue(Trie2.search("life"));
+        assertTrue(trie.search("programming"));
+        assertTrue(trie.search("is"));
+        assertTrue(trie.search("a"));
+        assertTrue(trie.search("way"));
+        assertTrue(trie.search("of"));
+        assertTrue(trie.search("life"));
     }
 
     @Test
     public void testSearch_GivenWordsAdded_GivenWordNotInTrie2_ExpectFalse() {
-        Trie2 Trie2 = createTestTrie2();
+        Trie2 trie = createTestTrie2();
 
-        assertFalse(Trie2.search("3"));
-        assertFalse(Trie2.search("vida"));
+        assertFalse(trie.search("3"));
+        assertFalse(trie.search("vida"));
     }
 
     @Test
     public void testDelete_GivenWordNotInTrie2_ExpectFalse() {
-        Trie2 Trie2 = new Trie2();
+        Trie2 trie = new Trie2();
 
-        assertFalse(Trie2.delete("someword"));
+        assertFalse(trie.delete("someword"));
     }
 
     @Test
     public void testDelete_GivenWordInTrie2_ExpectRemoved() {
-        Trie2 Trie2 = createTestTrie2();
+        Trie2 trie = createTestTrie2();
 
-        assertTrue(Trie2.search("programming"));
-        Trie2.delete("programming");
-        assertFalse(Trie2.search("programming"));
+        assertTrue(trie.search("programming"));
+        trie.delete("programming");
+        assertFalse(trie.search("programming"));
     }
 
     @Test
     public void testDelete_GivenTrie2WithOverlappingWords_ExpectDontDeleteSubElement() {
-        Trie2 Trie21 = new Trie2();
+        Trie2 trie1 = new Trie2();
 
-        Trie21.insert("pie");
-        Trie21.insert("pies");
+        trie1.insert("pie");
+        trie1.insert("pies");
 
-        Trie21.delete("pies");
+        trie1.delete("pies");
 
-        assertTrue(Trie21.search("pie"));
+        assertTrue(trie1.search("pie"));
+    }
+
+    @Test
+    public void testDelete_GivenTrie2WithOverlappingWords_ExpectDeleteSubElement() {
+        Trie2 trie1 = new Trie2();
+
+        trie1.insert("pie");
+        trie1.insert("pies");
+
+        trie1.delete("pie");
+
+        assertTrue(trie1.search("pies"));
+    }
+
+    @Test
+    public void testDelete_GivenWordNotInTrie2_ExpectNotDeleted() {
+        Trie2 trie1 = new Trie2();
+
+        trie1.insert("pies");
+        trie1.delete("pie");
+
+        assertTrue(trie1.search("pies"));
     }
 
     private Trie2 createTestTrie2() {

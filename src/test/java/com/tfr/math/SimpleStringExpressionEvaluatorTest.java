@@ -3,6 +3,7 @@ package com.tfr.math;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SimpleStringExpressionEvaluatorTest {
 
@@ -53,6 +54,13 @@ public class SimpleStringExpressionEvaluatorTest {
         Double result = SimpleStringExpressionEvaluator.evaluate("10 / 2");
 
         assertEquals(5, result);
+    }
+
+    @Test
+    public void testEvaluate_GivenDivisionBy0_ExpectUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> {
+            SimpleStringExpressionEvaluator.evaluate("10 / 0");
+        });
     }
 
     @Test

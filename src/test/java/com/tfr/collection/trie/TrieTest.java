@@ -69,6 +69,28 @@ public class TrieTest {
         assertTrue(trie1.containsNode("pie"));
     }
 
+    @Test
+    public void testDelete_GivenTrieWithOverlappingWords_ExpectDeleteSubElement() {
+        Trie trie1 = new Trie();
+
+        trie1.insert("pie");
+        trie1.insert("pies");
+
+        trie1.delete("pie");
+
+        assertTrue(trie1.containsNode("pies"));
+    }
+
+    @Test
+    public void testDelete_GivenWordNotInTrie_ExpectNotDeleted() {
+        Trie trie1 = new Trie();
+
+        trie1.insert("pies");
+        trie1.delete("pie");
+
+        assertTrue(trie1.containsNode("pies"));
+    }
+
     private Trie createTestTrie() {
         Trie trie = new Trie();
 
