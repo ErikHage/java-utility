@@ -1,4 +1,4 @@
-package com.tfr.math;
+package com.tfr.math.expression;
 
 import java.util.Set;
 import java.util.Stack;

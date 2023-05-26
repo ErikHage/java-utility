@@ -1,4 +1,4 @@
-package com.tfr.math;
+package com.tfr.math.expression;
 
 import org.junit.jupiter.api.Test;
 
