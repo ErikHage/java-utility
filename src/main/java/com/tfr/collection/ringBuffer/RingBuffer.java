@@ -1,4 +1,4 @@
-package com.tfr.collection;
+package com.tfr.collection.ringBuffer;
 
 import java.util.ArrayList;
 import java.util.List;

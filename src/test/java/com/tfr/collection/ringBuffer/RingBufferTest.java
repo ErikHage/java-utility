@@ -1,5 +1,6 @@
-package com.tfr.collection;
+package com.tfr.collection.ringBuffer;
 
+import com.tfr.collection.ringBuffer.RingBuffer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
