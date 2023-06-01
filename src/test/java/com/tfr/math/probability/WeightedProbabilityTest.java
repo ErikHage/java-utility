@@ -1,4 +1,4 @@
-package com.tfr.probability;
+package com.tfr.math.probability;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

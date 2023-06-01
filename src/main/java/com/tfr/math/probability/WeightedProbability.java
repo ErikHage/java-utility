@@ -1,7 +1,9 @@
-package com.tfr.probability;
+package com.tfr.math.probability;
 
 import java.security.InvalidParameterException;
-import java.util.*;
+import java.util.NavigableMap;
+import java.util.Random;
+import java.util.TreeMap;
 
 /**
  *  Build a collection of weighted outcomes of type T. Generates responses based on the total weight of all added
