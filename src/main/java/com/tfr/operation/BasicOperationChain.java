@@ -1,7 +1,10 @@
 package com.tfr.operation;
 
+import com.tfr.operation.audit.AuditTrail;
 import com.tfr.operation.exception.OperationException;
 import com.tfr.operation.exception.ValidationException;
+import com.tfr.operation.operation.Operation;
+import com.tfr.operation.validation.Validation;
 
 public class BasicOperationChain<I> implements OperationChain<I> {
     private final I state;
@@ -25,11 +28,12 @@ public class BasicOperationChain<I> implements OperationChain<I> {
     public <O> OperationChain<O> transform(Operation<I,O> operation) {
         try {
             O result = operation.execute(state);
-            // do audit
+            auditTrail.addAudit(operation.getName(), false);
             return new BasicOperationChain<>(result, auditTrail);
         } catch (OperationException ex) {
+            auditTrail.addAudit(operation.getName(), false, ex);
             // return a short-circuit chain that audits "skipped"
-            return new ShortCircuitOperationChain<>(ex);
+            return new ShortCircuitOperationChain<>(ex, auditTrail);
         }
     }
 
@@ -37,18 +41,23 @@ public class BasicOperationChain<I> implements OperationChain<I> {
     public OperationChain<I> validate(Validation<I> validation) {
         try {
             validation.validate(state);
-            // do audit
+            auditTrail.addAudit(validation.getName(), false);
             return this;
         } catch (ValidationException ex) {
-            // do audit
+            auditTrail.addAudit(validation.getName(), false, ex);
             // return a short-circuit chain that audits "skipped"
-            return new ShortCircuitOperationChain<>(ex);
+            return new ShortCircuitOperationChain<>(ex, auditTrail);
         }
     }
 
     @Override
     public I getState() {
         return state;
+    }
+
+    @Override
+    public AuditTrail getAuditTrail() {
+        return auditTrail;
     }
 
 }
