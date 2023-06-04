@@ -29,7 +29,7 @@ public class ShortCircuitOperationChainTest {
     @BeforeEach
     public void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);
-        testException = new OperationException();
+        testException = new OperationException("");
 
         when(operation.getName()).thenReturn("test-operation-name");
         when(validation.getName()).thenReturn("test-validation-name");

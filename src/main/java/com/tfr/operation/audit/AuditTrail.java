@@ -22,4 +22,9 @@ public class AuditTrail {
     public List<StepResult> getAudits() {
         return audits;
     }
+
+    public void printAudits() {
+        System.out.println("Audit Trail:");
+        audits.forEach(System.out::println);
+    }
 }

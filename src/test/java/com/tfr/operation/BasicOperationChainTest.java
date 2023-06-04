@@ -1,6 +1,5 @@
 package com.tfr.operation;
 
-import com.tfr.operation.exception.OperationChainException;
 import com.tfr.operation.exception.OperationException;
 import com.tfr.operation.exception.ValidationException;
 import com.tfr.operation.operation.Operation;
@@ -28,8 +27,8 @@ public class BasicOperationChainTest {
     @BeforeEach
     public void setUp() throws OperationException {
         autoCloseable = MockitoAnnotations.openMocks(this);
-        testOperationException = new OperationException();
-        testValidationException = new ValidationException();
+        testOperationException = new OperationException("");
+        testValidationException = new ValidationException("");
 
         when(operation.getName()).thenReturn("test-operation-name");
         when(validation.getName()).thenReturn("test-validation-name");
