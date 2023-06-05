@@ -1,13 +1,10 @@
 package com.tfr.math.expression;
 
-import java.util.Set;
 import java.util.Stack;
 
-public class StringExpressionEvaluator {
+public class StringExpressionEvaluator extends ExpressionEvaluator<Double> {
 
-    private static final Set<Character> operators = Set.of('+', '-', '*', '/');
-
-    public static double evaluate(String expression) {
+    public Double evaluate(String expression) {
         char[] tokens = expression.toCharArray();
 
         Stack<Double> values = new Stack<>();
@@ -18,7 +15,7 @@ public class StringExpressionEvaluator {
                 continue;
             }
 
-            if (isNumber(tokens[i])) {
+            if (isNumber(tokens[i]) || isDecimal(tokens[i])) {
                 StringBuilder sb = new StringBuilder();
 
                 while (i < tokens.length && isNumber(tokens[i])) {
@@ -57,52 +54,18 @@ public class StringExpressionEvaluator {
         return values.pop();
     }
 
-    private static boolean hasPrecedence(char operator1, char operator2) {
-        if (operator2 == '(' || operator2 == ')') {
-            return false;
-        }
-        if ((operator1 == '*' || operator1 == '/') && (operator2 == '+' || operator2 == '-')) {
-            return false;
-        }
-        return true;
-    }
-
-    private static boolean isNumber(char token) {
-        boolean isNumber = token >= '0' && token <= '9';
-        boolean isDecimal = token == '.';
-
-        return isNumber || isDecimal;
-    }
-
-    private static boolean isOperator(char token) {
-        return operators.contains(token);
-    }
-
-    private static double applyOperation(char op, double b, double a) {
+    private double applyOperation(char op, double b, double a) {
         switch (op) {
-            case '+' -> {
-                return a + b;
-            }
-            case '-' -> {
-                return a - b;
-            }
-            case '*' -> {
-                return a * b;
-            }
+            case '+' -> { return a + b; }
+            case '-' -> { return a - b; }
+            case '*' -> { return a * b; }
             case '/' -> {
                 if (b == 0) {
                     throw new UnsupportedOperationException("Cannot divide by zero");
                 }
                 return a / b;
             }
+            default -> throw new UnsupportedOperationException("Invalid operation: " + op);
         }
-
-        return 0;
     }
-
-    private static void printStacks(Stack<Double> values, Stack<Character> operators) {
-        System.out.println("vals: " + values);
-        System.out.println("ops : " + operators);
-    }
-
 }

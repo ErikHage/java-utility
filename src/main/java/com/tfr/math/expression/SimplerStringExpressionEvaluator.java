@@ -1,13 +1,10 @@
 package com.tfr.math.expression;
 
-import java.util.Set;
 import java.util.Stack;
 
-public class SimplerStringExpressionEvaluator {
+public class SimplerStringExpressionEvaluator extends ExpressionEvaluator<Integer> {
 
-    private static final Set<Character> operators = Set.of('+', '-', '*', '/');
-
-    public static int evaluate(String expression) {
+    public Integer evaluate(String expression) {
         char[] tokens = expression.toCharArray();
 
         Stack<Integer> values = new Stack<>();
@@ -46,22 +43,7 @@ public class SimplerStringExpressionEvaluator {
         return values.pop();
     }
 
-    private static boolean isNumber(char token) {
-        return token >= '0' && token <= '9';
-    }
-
-    private static boolean isOperator(char token) {
-        return operators.contains(token);
-    }
-
-    private static boolean hasPrecedence(char operator1, char operator2) {
-        if ((operator1 == '*' || operator1 == '/') && (operator2 == '+' || operator2 == '-')) {
-            return false;
-        }
-        return true;
-    }
-
-    private static int applyOperation(char op, int b, int a) {
+    private int applyOperation(char op, int b, int a) {
         switch (op) {
             case '+' -> { return a + b; }
             case '-' -> { return a - b; }
@@ -72,13 +54,6 @@ public class SimplerStringExpressionEvaluator {
                 }
                 return a / b;
             }
-        }
-
-        return 0;
-    }
-
-    private static void printStacks(Stack<Integer> values, Stack<Character> operators) {
-        System.out.println("vals: " + values);
-        System.out.println("ops : " + operators);
+            default -> throw new UnsupportedOperationException("Invalid operation: " + op);        }
     }
 }
