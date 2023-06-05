@@ -25,6 +25,13 @@ public class QuadTreeTest {
     }
 
     @Test
+    public void testAddPoint_GivenPointOutsideRegion_ExpectFalse() {
+        Point point = new Point(-1,-1);
+
+        assertFalse(quadTree.addPoint(point));
+    }
+
+    @Test
     public void testInsert_GivenPointOutsideArea_ExpectFalse() {
         boolean result = quadTree.addPoint(new Point(1000, 1000));
 
