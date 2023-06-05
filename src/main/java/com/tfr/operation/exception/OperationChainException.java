@@ -9,4 +9,8 @@ public class OperationChainException extends Exception {
     public OperationChainException(Throwable cause) {
         super(cause);
     }
+
+    public OperationChainException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

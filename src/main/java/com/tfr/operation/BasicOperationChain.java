@@ -32,7 +32,6 @@ public class BasicOperationChain<I> implements OperationChain<I> {
             return new BasicOperationChain<>(result, auditTrail);
         } catch (OperationException ex) {
             auditTrail.addAudit(operation.getName(), false, ex);
-            // return a short-circuit chain that audits "skipped"
             return new ShortCircuitOperationChain<>(ex, auditTrail);
         }
     }
@@ -45,7 +44,6 @@ public class BasicOperationChain<I> implements OperationChain<I> {
             return this;
         } catch (ValidationException ex) {
             auditTrail.addAudit(validation.getName(), false, ex);
-            // return a short-circuit chain that audits "skipped"
             return new ShortCircuitOperationChain<>(ex, auditTrail);
         }
     }
