@@ -6,6 +6,9 @@ import com.tfr.operation.exception.ValidationException;
 import com.tfr.operation.operation.Operation;
 import com.tfr.operation.validation.Validation;
 
+import java.util.function.Consumer;
+import java.util.function.Function;
+
 public class BasicOperationChain<I> implements OperationChain<I> {
     private final I state;
     private final AuditTrail auditTrail;
@@ -26,24 +29,34 @@ public class BasicOperationChain<I> implements OperationChain<I> {
 
     @Override
     public <O> OperationChain<O> transform(Operation<I,O> operation) {
+       return transform(operation.getName(), operation::execute);
+    }
+
+    @Override
+    public <O> OperationChain<O> transform(String operationName, Function<I, O> operation) {
         try {
-            O result = operation.execute(state);
-            auditTrail.addAudit(operation.getName(), false);
+            O result = operation.apply(state);
+            auditTrail.addAudit(operationName, false);
             return new BasicOperationChain<>(result, auditTrail);
         } catch (OperationException ex) {
-            auditTrail.addAudit(operation.getName(), false, ex);
+            auditTrail.addAudit(operationName, false, ex);
             return new ShortCircuitOperationChain<>(ex, auditTrail);
         }
     }
 
     @Override
     public OperationChain<I> validate(Validation<I> validation) {
+        return validate(validation.getName(), validation::validate);
+    }
+
+    @Override
+    public OperationChain<I> validate(String validationName, Consumer<I> validation) {
         try {
-            validation.validate(state);
-            auditTrail.addAudit(validation.getName(), false);
+            validation.accept(state);
+            auditTrail.addAudit(validationName, false);
             return this;
         } catch (ValidationException ex) {
-            auditTrail.addAudit(validation.getName(), false, ex);
+            auditTrail.addAudit(validationName, false, ex);
             return new ShortCircuitOperationChain<>(ex, auditTrail);
         }
     }

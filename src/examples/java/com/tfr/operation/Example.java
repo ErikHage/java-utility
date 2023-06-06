@@ -1,9 +1,11 @@
 package com.tfr.operation;
 
+import com.tfr.operation.exception.OperationException;
 import com.tfr.operation.models.ExampleResult;
-import com.tfr.operation.steps.DecodeBase64Operation;
 import com.tfr.operation.steps.IsValidMessageFormatValidation;
 import com.tfr.operation.steps.ParseMessageOperation;
+
+import java.util.Base64;
 
 public class Example {
 
@@ -21,7 +23,8 @@ public class Example {
 
     private void runForMessage(String encodedMessage) {
         OperationChain<ExampleResult> resultStep = BasicOperationChain.of(encodedMessage)
-                .transform(new DecodeBase64Operation())
+//                .transform(new DecodeBase64Operation())
+                .transform("lambdaDecodeBase64", this::decodeBase64)
                 .validate(new IsValidMessageFormatValidation())
                 .transform(new ParseMessageOperation());
 
@@ -30,5 +33,14 @@ public class Example {
         ExampleResult result = resultStep.getState();
 
         System.out.println(result);
+    }
+
+    private String decodeBase64(String input) {
+        try {
+            byte[] decodedValue = Base64.getUrlDecoder().decode(input);
+            return new String(decodedValue);
+        } catch (Exception ex) {
+            throw new OperationException(ex);
+        }
     }
 }

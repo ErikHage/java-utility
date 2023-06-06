@@ -1,6 +1,6 @@
 package com.tfr.operation.exception;
 
-public class OperationChainException extends Exception {
+public class OperationChainException extends RuntimeException {
 
     public OperationChainException(String message) {
         super(message);

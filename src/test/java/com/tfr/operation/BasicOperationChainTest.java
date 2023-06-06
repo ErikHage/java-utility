@@ -68,7 +68,17 @@ public class BasicOperationChainTest {
     }
 
     @Test
-    public void testTransform_GivenValidation_ReturnsNewOperationChain() throws ValidationException {
+    public void testTransform_GivenLambdaFunction_ReturnsNewOperationChain() {
+        OperationChain<String> result = BasicOperationChain.of("abc")
+                .transform("step1", (s) -> {
+                    return s + "def";
+                });
+
+        assertEquals("abcdef", result.getState());
+    }
+
+    @Test
+    public void testValidate_GivenValidation_ReturnsSameOperationChain() throws ValidationException {
         BasicOperationChain<String> opChain = BasicOperationChain.of("first");
 
         OperationChain<String> result = opChain.validate(validation);
@@ -81,7 +91,7 @@ public class BasicOperationChainTest {
     }
 
     @Test
-    public void testTransform_GivenValidationThrowsException_ReturnsShortCircuitOperationChain() throws ValidationException {
+    public void testValidate_GivenValidationThrowsException_ReturnsShortCircuitOperationChain() throws ValidationException {
         doThrow(testValidationException).when(validation).validate("first");
 
         BasicOperationChain<String> opChain = BasicOperationChain.of("first");
@@ -91,6 +101,18 @@ public class BasicOperationChainTest {
         assertTrue(result instanceof ShortCircuitOperationChain<String>);
 
         verify(validation, times(1)).validate("first");
+    }
+
+    @Test
+    public void testValidate_GivenLambdaFunction_ReturnsNewOperationChain() {
+        OperationChain<String> result = BasicOperationChain.of("abc")
+                .validate("step1", (i) -> {
+                    if (i.startsWith("b")) {
+                        throw new ValidationException("failed");
+                    }
+                });
+
+        assertEquals("abc", result.getState());
     }
 
     @Test
