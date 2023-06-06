@@ -18,7 +18,7 @@ public class StringExpressionEvaluator extends ExpressionEvaluator<Double> {
             if (isNumber(tokens[i]) || isDecimal(tokens[i])) {
                 StringBuilder sb = new StringBuilder();
 
-                while (i < tokens.length && isNumber(tokens[i])) {
+                while (i < tokens.length && (isNumber(tokens[i]) || isDecimal(tokens[i]))) {
                     sb.append(tokens[i++]);
                 }
 
