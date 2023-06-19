@@ -14,16 +14,10 @@ public class WeightedProbability<T> {
     private final Random random;
     private double totalWeight;
 
-    /**
-     * Create a new instance of WeightedProbability using the default: java.util.Random
-     */
     public WeightedProbability() {
         this(new Random());
     }
 
-    /**
-     * Create a new instance of WeightedProbability
-     */
     public WeightedProbability(Random random) {
         this.mappedOutcomes = new TreeMap<Double, T>();
         this.random = random;
@@ -47,9 +41,9 @@ public class WeightedProbability<T> {
     }
 
     /**
-     * Returns one of the added items with a probability based on the normalized weight provided
+     * Returns one of the added outcomes with a probability based on the weights associated with each outcome
      *
-     * @return - a response from the added items
+     * @return T - a response from the added items
      */
     public T get() {
         double roll = random.nextDouble() * totalWeight;
