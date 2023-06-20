@@ -1,5 +1,6 @@
 package com.tfr.math.vector;
 
+import com.tfr.math.trig.AngleUnits;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,10 +15,52 @@ public class VectorTest {
     }
 
     @Test
+    public void testMagnitude_Givenxneg3yneg4_Expect5() {
+        Vector vector = Vector.fromComponents(-3.0,-4.0);
+
+        assertEquals(5.0, vector.magnitude());
+    }
+
+    @Test
+    public void testMagnitude_Givenxneg3y4_Expect5() {
+        Vector vector = Vector.fromComponents(-3.0,4.0);
+
+        assertEquals(5.0, vector.magnitude());
+    }
+
+    @Test
+    public void testMagnitude_Givenx3yneg4_Expect5() {
+        Vector vector = Vector.fromComponents(3.0,-4.0);
+
+        assertEquals(5.0, vector.magnitude());
+    }
+
+    @Test
     public void testAngle_Givenx3y4_Expect53ish() {
         Vector vector = Vector.fromComponents(3.0,4.0);
 
         assertEquals(53.13, vector.angle(AngleUnits.DEGREES), 0.001);
+    }
+
+    @Test
+    public void testAngle_Givenxneg3y4_Expect53ish() {
+        Vector vector = Vector.fromComponents(-3.0,4.0);
+
+        assertEquals(143.13, vector.angle(AngleUnits.DEGREES), 0.001);
+    }
+
+    @Test
+    public void testAngle_Givenxneg3yneg4_Expect233ish() {
+        Vector vector = Vector.fromComponents(-3.0,-4.0);
+
+        assertEquals(233.13, vector.angle(AngleUnits.DEGREES), 0.001);
+    }
+
+    @Test
+    public void testAngle_Givenx3yneg4_Expect233ish() {
+        Vector vector = Vector.fromComponents(3.0,-4.0);
+
+        assertEquals(323.13, vector.angle(AngleUnits.DEGREES), 0.001);
     }
 
     @Test

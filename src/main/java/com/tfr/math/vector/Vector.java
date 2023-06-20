@@ -1,5 +1,8 @@
 package com.tfr.math.vector;
 
+import com.tfr.math.trig.AngleUnits;
+import com.tfr.math.trig.TrigMath;
+
 public class Vector {
 
     private final double x;
@@ -17,9 +20,21 @@ public class Vector {
     }
 
     public static Vector fromComponents(double x, double y) {
-        double magnitude = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-        double angleRadians = Math.atan(y/x);
-        double angleDegrees = angleRadians * (180/Math.PI);
+        double magnitude = TrigMath.getHypotenuse(x, y);
+
+        double angleRadians = Math.atan(Math.abs(y)/Math.abs(x));
+        if (y > 0 && x < 0) {
+            // quadrant 2
+            angleRadians += (Math.PI / 2);
+        } else if (y < 0 && x < 0) {
+            // quadrant 3
+            angleRadians += Math.PI;
+        } else if (y < 0 && x > 0) {
+            // quadrant 4
+            angleRadians +=  (3 * Math.PI / 2);
+        }
+
+        double angleDegrees = TrigMath.toDegrees(angleRadians);
 
         return new Vector(x, y, magnitude, angleDegrees, angleRadians);
     }
@@ -29,14 +44,14 @@ public class Vector {
         double angleDegrees;
         if (angleUnits == AngleUnits.DEGREES) {
             angleDegrees = angle;
-            angleRadians = angle * (Math.PI/180);
+            angleRadians = TrigMath.toRadians(angle);
         } else {
             angleRadians = angle;
-            angleDegrees = angle * (180/Math.PI);
+            angleDegrees = TrigMath.toDegrees(angle);
         }
 
-        double x = magnitude * Math.cos(angleRadians);
-        double y = magnitude * Math.sin(angleRadians);
+        double x = TrigMath.getXProjection(magnitude, angleRadians);
+        double y = TrigMath.getYProjection(magnitude, angleRadians);
 
         return new Vector(x, y, magnitude, angleDegrees, angleRadians);
     }
