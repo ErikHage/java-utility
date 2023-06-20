@@ -4,6 +4,7 @@ import com.tfr.math.trig.AngleUnits;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class VectorTest {
 
@@ -36,6 +37,13 @@ public class VectorTest {
     }
 
     @Test
+    public void testMagnitude_Givenx0y0_Expect0() {
+        Vector vector = Vector.fromComponents(0,0);
+
+        assertEquals(0, vector.magnitude());
+    }
+
+    @Test
     public void testAngle_Givenx3y4_Expect53ish() {
         Vector vector = Vector.fromComponents(3.0,4.0);
 
@@ -61,6 +69,13 @@ public class VectorTest {
         Vector vector = Vector.fromComponents(3.0,-4.0);
 
         assertEquals(323.13, vector.angle(AngleUnits.DEGREES), 0.001);
+    }
+
+    @Test
+    public void testAngle_Givenx0y0_ExpectNaN() {
+        Vector vector = Vector.fromComponents(0,0);
+
+        assertTrue(Double.isNaN(vector.angle(AngleUnits.DEGREES)));
     }
 
     @Test

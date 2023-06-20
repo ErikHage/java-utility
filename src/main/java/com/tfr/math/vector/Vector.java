@@ -32,7 +32,22 @@ public class Vector {
         } else if (y < 0 && x > 0) {
             // quadrant 4
             angleRadians +=  (3 * Math.PI / 2);
+        } else if (x == 0) {
+            // on y-axis
+            if (y > 0) {
+                angleRadians = Math.PI / 2;
+            } else if (y < 0) {
+                angleRadians = 3 * (Math.PI / 2);
+            }
+        } else if (y == 0) {
+            // on x-axis
+            if (x > 0) {
+                angleRadians = 0;
+            } else if (x < 0) {
+                angleRadians = Math.PI;
+            }
         }
+
 
         double angleDegrees = TrigMath.toDegrees(angleRadians);
 
