@@ -9,10 +9,10 @@ public class VectorMathTest {
 
     @Test
     public void testResultant_GivenTwoVectors_ExpectCorrectResult() {
-        Vector v1 = Vector.fromComponents(0,1);
-        Vector v2 = Vector.fromComponents(1,0);
+        VectorXY v1 = VectorXY.fromComponents(0,1);
+        VectorXY v2 = VectorXY.fromComponents(1,0);
 
-        Vector resultant = VectorMath.resultant(v1, v2);
+        VectorXY resultant = VectorMath.resultant(v1, v2);
 
         assertEquals(1.0, resultant.x());
         assertEquals(1.0, resultant.y());
@@ -22,11 +22,11 @@ public class VectorMathTest {
 
     @Test
     public void testResultant_GivenThreeVectors_ExpectCorrectResult() {
-        Vector v1 = Vector.fromComponents(0,1);
-        Vector v2 = Vector.fromComponents(1,0);
-        Vector v3 = Vector.fromComponents(2,3);
+        VectorXY v1 = VectorXY.fromComponents(0,1);
+        VectorXY v2 = VectorXY.fromComponents(1,0);
+        VectorXY v3 = VectorXY.fromComponents(2,3);
 
-        Vector resultant = VectorMath.resultant(v1, v2, v3);
+        VectorXY resultant = VectorMath.resultant(v1, v2, v3);
 
         assertEquals(3.0, resultant.x());
         assertEquals(4.0, resultant.y());
@@ -36,10 +36,10 @@ public class VectorMathTest {
 
     @Test
     public void testResultant_GivenNegativeComponents_ExpectCorrectResult() {
-        Vector v1 = Vector.fromComponents(0,-1);
-        Vector v2 = Vector.fromComponents(-1,0);
+        VectorXY v1 = VectorXY.fromComponents(0,-1);
+        VectorXY v2 = VectorXY.fromComponents(-1,0);
 
-        Vector resultant = VectorMath.resultant(v1, v2);
+        VectorXY resultant = VectorMath.resultant(v1, v2);
 
         assertEquals(-1.0, resultant.x());
         assertEquals(-1.0, resultant.y());

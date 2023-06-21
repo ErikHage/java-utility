@@ -2,15 +2,15 @@ package com.tfr.math.vector;
 
 public class VectorMath {
 
-    public static Vector resultant(Vector... vectors) {
+    public static VectorXY resultant(VectorXY... vectors) {
         double xComponents = 0.0;
         double yComponents = 0.0;
 
-        for (Vector v: vectors) {
+        for (VectorXY v: vectors) {
             xComponents += v.x();
             yComponents += v.y();
         }
 
-        return Vector.fromComponents(xComponents, yComponents);
+        return VectorXY.fromComponents(xComponents, yComponents);
     }
 }
