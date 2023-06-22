@@ -3,7 +3,7 @@ package com.tfr.math.vector;
 import com.tfr.math.trig.AngleUnits;
 import com.tfr.math.trig.TrigMath;
 
-public class VectorXY {
+public class ForceXY {
 
     private final double x;
     private final double y;
@@ -11,7 +11,7 @@ public class VectorXY {
     private final double angleDegrees;
     private final double angleRadians;
 
-    private VectorXY(double x, double y, double magnitude, double angleDegrees, double angleRadians) {
+    private ForceXY(double x, double y, double magnitude, double angleDegrees, double angleRadians) {
         this.x = x;
         this.y = y;
         this.magnitude = magnitude;
@@ -19,7 +19,7 @@ public class VectorXY {
         this.angleRadians = angleRadians;
     }
 
-    public static VectorXY fromComponents(double x, double y) {
+    public static ForceXY fromComponents(double x, double y) {
         double magnitude = TrigMath.getHypotenuse(x, y);
 
         double angleRadians = Math.atan(Math.abs(y)/Math.abs(x));
@@ -51,10 +51,10 @@ public class VectorXY {
 
         double angleDegrees = TrigMath.toDegrees(angleRadians);
 
-        return new VectorXY(x, y, magnitude, angleDegrees, angleRadians);
+        return new ForceXY(x, y, magnitude, angleDegrees, angleRadians);
     }
 
-    public static VectorXY from(double magnitude, double angle, AngleUnits angleUnits) {
+    public static ForceXY from(double magnitude, double angle, AngleUnits angleUnits) {
         double angleRadians;
         double angleDegrees;
         if (angleUnits == AngleUnits.DEGREES) {
@@ -68,7 +68,7 @@ public class VectorXY {
         double x = TrigMath.getXProjection(magnitude, angleRadians);
         double y = TrigMath.getYProjection(magnitude, angleRadians);
 
-        return new VectorXY(x, y, magnitude, angleDegrees, angleRadians);
+        return new ForceXY(x, y, magnitude, angleDegrees, angleRadians);
     }
 
     public double x() {

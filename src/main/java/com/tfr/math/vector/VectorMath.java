@@ -2,15 +2,15 @@ package com.tfr.math.vector;
 
 public class VectorMath {
 
-    public static VectorXY resultant(VectorXY... vectors) {
+    public static ForceXY calculateResultantForce(ForceXY... vectors) {
         double xComponents = 0.0;
         double yComponents = 0.0;
 
-        for (VectorXY v: vectors) {
+        for (ForceXY v: vectors) {
             xComponents += v.x();
             yComponents += v.y();
         }
 
-        return VectorXY.fromComponents(xComponents, yComponents);
+        return ForceXY.fromComponents(xComponents, yComponents);
     }
 }
