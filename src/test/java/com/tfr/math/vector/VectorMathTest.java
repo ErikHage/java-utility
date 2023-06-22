@@ -9,8 +9,8 @@ public class VectorMathTest {
 
     @Test
     public void testCalculateResultantForce_GivenTwoVectors_ExpectCorrectResult() {
-        ForceXY v1 = ForceXY.fromComponents(0,1);
-        ForceXY v2 = ForceXY.fromComponents(1,0);
+        ForceXY v1 = new ForceXY(0,1);
+        ForceXY v2 = new ForceXY(1,0);
 
         ForceXY resultant = VectorMath.calculateResultantForce(v1, v2);
 
@@ -22,9 +22,9 @@ public class VectorMathTest {
 
     @Test
     public void testCalculateResultantForce_GivenThreeVectors_ExpectCorrectResult() {
-        ForceXY v1 = ForceXY.fromComponents(0,1);
-        ForceXY v2 = ForceXY.fromComponents(1,0);
-        ForceXY v3 = ForceXY.fromComponents(2,3);
+        ForceXY v1 = new ForceXY(0,1);
+        ForceXY v2 = new ForceXY(1,0);
+        ForceXY v3 = new ForceXY(2,3);
 
         ForceXY resultant = VectorMath.calculateResultantForce(v1, v2, v3);
 
@@ -36,8 +36,8 @@ public class VectorMathTest {
 
     @Test
     public void testCalculateResultantForce_GivenNegativeComponents_ExpectCorrectResult() {
-        ForceXY v1 = ForceXY.fromComponents(0,-1);
-        ForceXY v2 = ForceXY.fromComponents(-1,0);
+        ForceXY v1 = new ForceXY(0,-1);
+        ForceXY v2 = new ForceXY(-1,0);
 
         ForceXY resultant = VectorMath.calculateResultantForce(v1, v2);
 

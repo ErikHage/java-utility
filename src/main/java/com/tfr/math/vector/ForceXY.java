@@ -11,15 +11,7 @@ public class ForceXY {
     private final double angleDegrees;
     private final double angleRadians;
 
-    private ForceXY(double x, double y, double magnitude, double angleDegrees, double angleRadians) {
-        this.x = x;
-        this.y = y;
-        this.magnitude = magnitude;
-        this.angleDegrees = angleDegrees;
-        this.angleRadians = angleRadians;
-    }
-
-    public static ForceXY fromComponents(double x, double y) {
+    public ForceXY(double x, double y) {
         double magnitude = TrigMath.getHypotenuse(x, y);
 
         double angleRadians = Math.atan(Math.abs(y)/Math.abs(x));
@@ -51,10 +43,14 @@ public class ForceXY {
 
         double angleDegrees = TrigMath.toDegrees(angleRadians);
 
-        return new ForceXY(x, y, magnitude, angleDegrees, angleRadians);
+        this.x = x;
+        this.y = y;
+        this.magnitude = magnitude;
+        this.angleDegrees = angleDegrees;
+        this.angleRadians = angleRadians;
     }
 
-    public static ForceXY from(double magnitude, double angle, AngleUnits angleUnits) {
+    public ForceXY(double magnitude, double angle, AngleUnits angleUnits) {
         double angleRadians;
         double angleDegrees;
         if (angleUnits == AngleUnits.DEGREES) {
@@ -68,7 +64,11 @@ public class ForceXY {
         double x = TrigMath.getXProjection(magnitude, angleRadians);
         double y = TrigMath.getYProjection(magnitude, angleRadians);
 
-        return new ForceXY(x, y, magnitude, angleDegrees, angleRadians);
+        this.x = x;
+        this.y = y;
+        this.magnitude = magnitude;
+        this.angleDegrees = angleDegrees;
+        this.angleRadians = angleRadians;
     }
 
     public double x() {

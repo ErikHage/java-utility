@@ -11,6 +11,6 @@ public class VectorMath {
             yComponents += v.y();
         }
 
-        return ForceXY.fromComponents(xComponents, yComponents);
+        return new ForceXY(xComponents, yComponents);
     }
 }
