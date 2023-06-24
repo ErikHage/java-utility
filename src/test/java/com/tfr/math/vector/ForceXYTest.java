@@ -3,8 +3,7 @@ package com.tfr.math.vector;
 import com.tfr.math.trig.AngleUnits;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ForceXYTest {
 
@@ -47,42 +46,38 @@ public class ForceXYTest {
     public void testAngle_Givenx3y4_Expect53ish() {
         ForceXY vector = new ForceXY(3.0,4.0);
 
-        assertEquals(53.13, vector.angle(AngleUnits.DEGREES), 0.001);
+        assertEquals(53.13, vector.direction(AngleUnits.DEGREES), 0.001);
     }
 
     @Test
     public void testAngle_Givenxneg3y4_Expect53ish() {
         ForceXY vector = new ForceXY(-3.0,4.0);
 
-        assertEquals(143.13, vector.angle(AngleUnits.DEGREES), 0.001);
+        System.out.println(vector);
+
+        assertEquals(126.869, vector.direction(AngleUnits.DEGREES), 0.001);
     }
 
     @Test
     public void testAngle_Givenxneg3yneg4_Expect233ish() {
         ForceXY vector = new ForceXY(-3.0,-4.0);
 
-        assertEquals(233.13, vector.angle(AngleUnits.DEGREES), 0.001);
+        assertEquals(233.13, vector.direction(AngleUnits.DEGREES), 0.001);
     }
 
     @Test
     public void testAngle_Givenx3yneg4_Expect233ish() {
         ForceXY vector = new ForceXY(3.0,-4.0);
 
-        assertEquals(323.13, vector.angle(AngleUnits.DEGREES), 0.001);
+        assertEquals(306.869, vector.direction(AngleUnits.DEGREES), 0.001);
     }
 
     @Test
     public void testAngle_Givenx0y0_ExpectNaN() {
         ForceXY vector = new ForceXY(0,0);
 
-        assertTrue(Double.isNaN(vector.angle(AngleUnits.DEGREES)));
-    }
-
-    @Test
-    public void testX_Given5at53ish_Expect34() {
-        ForceXY vector = new ForceXY(5.0, 53.13, AngleUnits.DEGREES);
-
-        assertEquals(3.0, vector.x(), 0.001);
-        assertEquals(4.0, vector.y(), 0.001);
+        assertThrows(RuntimeException.class, () -> {
+            vector.direction(AngleUnits.DEGREES);
+        });
     }
 }

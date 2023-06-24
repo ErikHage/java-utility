@@ -31,4 +31,21 @@ public class VectorXY {
         }
         return adjustedAngle;
     }
+
+    public double xProjection() {
+        return point2.x() - point1.x();
+    }
+
+    public double yProjection() {
+        return point2.y() - point1.y();
+    }
+
+    @Override
+    public String toString() {
+        return "VectorXY{" +
+                "point1=" + point1 +
+                ", point2=" + point2 +
+                ", vectorDirection=" + vectorDirection +
+                '}';
+    }
 }

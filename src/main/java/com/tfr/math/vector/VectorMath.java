@@ -54,8 +54,8 @@ public class VectorMath {
         double yComponents = 0.0;
 
         for (ForceXY v: vectors) {
-            xComponents += v.x();
-            yComponents += v.y();
+            xComponents += v.xProjection();
+            yComponents += v.yProjection();
         }
 
         return new ForceXY(xComponents, yComponents);
