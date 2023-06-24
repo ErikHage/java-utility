@@ -36,16 +36,37 @@ public class VectorXYTest {
     }
 
     @Test
-    public void testDirection_Givenx3y4Degrees_Expect53ish() {
-        VectorXY vector = new VectorXY(0.0, 3.0, 0.0, 4.0);
+    public void testDirection_Givenx3y3Degrees_Expect45() {
+        VectorXY vector = new VectorXY(0.0, 3.0, 0.0, 3.0);
 
-        assertEquals(53.13, vector.direction(AngleUnits.DEGREES), 0.001);
+        assertEquals(45.0, vector.direction(AngleUnits.DEGREES), 0.001);
     }
 
     @Test
-    public void testAngle_Givenx3y4Radians_ExpectPoint927295ish() {
-        VectorXY vector = new VectorXY(0.0, 3.0, 0.0, 4.0);
+    public void testDirection_Givenxneg3y3Degrees_Expect45() {
+        VectorXY vector = new VectorXY(0.0, -3.0, 0.0, 3.0);
 
-        assertEquals(0.927295, vector.direction(AngleUnits.RADIANS), 0.000001);
+        assertEquals(135.0, vector.direction(AngleUnits.DEGREES), 0.001);
+    }
+
+    @Test
+    public void testDirection_Givenx3yneg3Degrees_Expect45() {
+        VectorXY vector = new VectorXY(0.0, 3.0, 0.0, -3.0);
+
+        assertEquals(315.0, vector.direction(AngleUnits.DEGREES), 0.001);
+    }
+
+    @Test
+    public void testDirection_Givenxneg3yneg3Degrees_Expect45() {
+        VectorXY vector = new VectorXY(0.0, -3.0, 0.0, -3.0);
+
+        assertEquals(225.0, vector.direction(AngleUnits.DEGREES), 0.001);
+    }
+
+    @Test
+    public void testAngle_Givenx3y3Radians_ExpectPiOver4() {
+        VectorXY vector = new VectorXY(0.0, 3.0, 0.0, 3.0);
+
+        assertEquals(Math.PI/4, vector.direction(AngleUnits.RADIANS));
     }
 }
