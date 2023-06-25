@@ -4,6 +4,7 @@ import com.tfr.math.trig.AngleUnits;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class VectorMathTest {
 
@@ -45,5 +46,60 @@ public class VectorMathTest {
         assertEquals(-1.0, resultant.yProjection());
         assertEquals(Math.sqrt(2.0), resultant.magnitude());
         assertEquals(225.0, resultant.direction(AngleUnits.DEGREES));
+    }
+
+    @Test
+    public void testAdjustAngle_GivenCaseO_ExpectException() {
+        assertThrows(RuntimeException.class, () -> {
+            VectorMath.adjustAngle(0.5, VectorDirection.O);
+        });
+    }
+
+    @Test
+    public void testAdjustAngle_GivenCaseE_Expect0() {
+        double result = VectorMath.adjustAngle(0.5, VectorDirection.E);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void testAdjustAngle_GivenCaseNE_ExpectAngle() {
+        double result = VectorMath.adjustAngle(0.5, VectorDirection.NE);
+        assertEquals(0.5, result);
+    }
+
+    @Test
+    public void testAdjustAngle_GivenCaseN_ExpectPiOver2() {
+        double result = VectorMath.adjustAngle(0.5, VectorDirection.N);
+        assertEquals(Math.PI / 2, result);
+    }
+
+    @Test
+    public void testAdjustAngle_GivenCaseNW_ExpectPiMinusAngle() {
+        double result = VectorMath.adjustAngle(0.5, VectorDirection.NW);
+        assertEquals(Math.PI - 0.5, result);
+    }
+
+    @Test
+    public void testAdjustAngle_GivenCaseW_ExpectPi() {
+        double result = VectorMath.adjustAngle(0.5, VectorDirection.W);
+        assertEquals(Math.PI, result);
+    }
+
+    @Test
+    public void testAdjustAngle_GivenCaseSW_ExpectPiPlusAngle() {
+        double result = VectorMath.adjustAngle(0.5, VectorDirection.SW);
+        assertEquals(Math.PI + 0.5, result);
+    }
+
+    @Test
+    public void testAdjustAngle_GivenCaseS_Expect3PiOver2() {
+        double result = VectorMath.adjustAngle(0.5, VectorDirection.S);
+        assertEquals((3.0 / 2.0) * Math.PI, result);
+    }
+
+    @Test
+    public void testAdjustAngle_GivenCaseSE_Expect2PiMinusAngle() {
+        double result = VectorMath.adjustAngle(0.5, VectorDirection.SE);
+        assertEquals(2 * Math.PI - 0.5, result);
     }
 }
