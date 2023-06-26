@@ -11,28 +11,28 @@ public class VectorXYTest {
     public void testMagnitude_Givenx3y4_Expect5() {
         VectorXY vector = new VectorXY(0.0,3.0, 0.0,4.0);
 
-        assertEquals(5.0, vector.magnitude());
+        assertEquals(5.0, VectorMath.magnitude(vector));
     }
 
     @Test
     public void testMagnitude_Givenxneg3y4_Expect5() {
         VectorXY vector = new VectorXY(0.0,-3.0, 0.0,4.0);
 
-        assertEquals(5.0, vector.magnitude());
+        assertEquals(5.0, VectorMath.magnitude(vector));
     }
 
     @Test
     public void testMagnitude_Givenx3yneg4_Expect5() {
         VectorXY vector = new VectorXY(0.0,3.0, 0.0,-4.0);
 
-        assertEquals(5.0, vector.magnitude());
+        assertEquals(5.0, VectorMath.magnitude(vector));
     }
 
     @Test
     public void testMagnitude_Givenxneg3yneg4_Expect5() {
         VectorXY vector = new VectorXY(0.0,-3.0, 0.0,-4.0);
 
-        assertEquals(5.0, vector.magnitude());
+        assertEquals(5.0, VectorMath.magnitude(vector));
     }
 
     @Test

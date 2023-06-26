@@ -15,10 +15,6 @@ public class VectorXY {
         this.vectorDirection = VectorMath.getVectorDirection(point1, point2);
     }
 
-    public double magnitude() {
-        return Math.sqrt(Math.pow(point2.x() - point1.x(), 2) + Math.pow(point2.y() - point1.y(), 2));
-    }
-
     public double direction(AngleUnits angleUnits) {
         double xDiff = Math.abs(point2.x() - point1.x());
         double yDiff = Math.abs(point2.y() - point1.y());
@@ -30,6 +26,14 @@ public class VectorXY {
             return TrigMath.toDegrees(adjustedAngle);
         }
         return adjustedAngle;
+    }
+
+    public Point getPoint1() {
+        return point1;
+    }
+
+    public Point getPoint2() {
+        return point2;
     }
 
     public double xProjection() {

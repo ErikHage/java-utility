@@ -60,4 +60,11 @@ public class VectorMath {
 
         return new ForceXY(xComponents, yComponents);
     }
+
+    public static double magnitude(VectorXY vector) {
+        return Math.sqrt(
+                Math.pow(vector.getPoint2().x() - vector.getPoint1().x(), 2)
+                + Math.pow(vector.getPoint2().y() - vector.getPoint1().y(), 2)
+        );
+    }
 }

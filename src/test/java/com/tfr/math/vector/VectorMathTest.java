@@ -17,7 +17,7 @@ public class VectorMathTest {
 
         assertEquals(1.0, resultant.xProjection());
         assertEquals(1.0, resultant.yProjection());
-        assertEquals(Math.sqrt(2.0), resultant.magnitude());
+        assertEquals(Math.sqrt(2.0), VectorMath.magnitude(resultant));
         assertEquals(45.0, resultant.direction(AngleUnits.DEGREES));
     }
 
@@ -31,7 +31,7 @@ public class VectorMathTest {
 
         assertEquals(3.0, resultant.xProjection());
         assertEquals(4.0, resultant.yProjection());
-        assertEquals(5.0, resultant.magnitude());
+        assertEquals(5.0, VectorMath.magnitude(resultant));
         assertEquals(53.13, resultant.direction(AngleUnits.DEGREES), 0.001);
     }
 
@@ -44,7 +44,7 @@ public class VectorMathTest {
 
         assertEquals(-1.0, resultant.xProjection());
         assertEquals(-1.0, resultant.yProjection());
-        assertEquals(Math.sqrt(2.0), resultant.magnitude());
+        assertEquals(Math.sqrt(2.0), VectorMath.magnitude(resultant));
         assertEquals(225.0, resultant.direction(AngleUnits.DEGREES));
     }
 
