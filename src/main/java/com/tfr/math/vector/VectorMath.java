@@ -2,7 +2,7 @@ package com.tfr.math.vector;
 
 public class VectorMath {
 
-    public static VectorDirection getVectorDirection(Point p1, Point p2) {
+    public static VectorDirection getVectorDirection(Point2D p1, Point2D p2) {
         double x = p2.x() - p1.x();
         double y = p2.y() - p1.y();
 
@@ -61,10 +61,11 @@ public class VectorMath {
         return new ForceXY(xComponents, yComponents);
     }
 
-    public static double magnitude(VectorXY vector) {
+    public static double magnitude(Vector vector) {
         return Math.sqrt(
-                Math.pow(vector.getPoint2().x() - vector.getPoint1().x(), 2)
-                + Math.pow(vector.getPoint2().y() - vector.getPoint1().y(), 2)
+                Math.pow(vector.point2().x() - vector.point1().x(), 2)
+                + Math.pow(vector.point2().y() - vector.point1().y(), 2)
+                + Math.pow(vector.point2().z() - vector.point1().z(), 2)
         );
     }
 }

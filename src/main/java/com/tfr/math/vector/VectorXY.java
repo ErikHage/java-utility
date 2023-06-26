@@ -3,15 +3,15 @@ package com.tfr.math.vector;
 import com.tfr.math.trig.AngleUnits;
 import com.tfr.math.trig.TrigMath;
 
-public class VectorXY {
+public class VectorXY implements Vector {
 
-    private final Point point1;
-    private final Point point2;
+    private final Point2D point1;
+    private final Point2D point2;
     private final VectorDirection vectorDirection;
 
     public VectorXY(double x1, double x2, double y1, double y2) {
-        this.point1 = new Point(x1, y1);
-        this.point2 = new Point(x2, y2);
+        this.point1 = new Point2D(x1, y1);
+        this.point2 = new Point2D(x2, y2);
         this.vectorDirection = VectorMath.getVectorDirection(point1, point2);
     }
 
@@ -28,11 +28,11 @@ public class VectorXY {
         return adjustedAngle;
     }
 
-    public Point getPoint1() {
+    public Point2D point1() {
         return point1;
     }
 
-    public Point getPoint2() {
+    public Point2D point2() {
         return point2;
     }
 

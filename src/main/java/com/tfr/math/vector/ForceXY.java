@@ -9,5 +9,4 @@ public class ForceXY extends VectorXY {
         super(0, x, 0, y);
     }
 
-
 }

@@ -1,4 +1,8 @@
 package com.tfr.math.vector;
 
-public record Point(double x, double y) {
+public interface Point {
+
+    double x();
+    double y();
+    double z();
 }

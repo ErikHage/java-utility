@@ -10,11 +10,11 @@ public class VectorXYZ {
         this.point2 = new Point3D(x2, y2, z2);
     }
 
-    public double magnitude() {
-        return Math.sqrt(
-                Math.pow(point2.x() - point1.x(), 2)
-                + Math.pow(point2.y() - point1.y(), 2)
-                + Math.pow(point2.z() - point1.z(), 2)
-        );
+    public Point3D point1() {
+        return point1;
+    }
+
+    public Point3D point2() {
+        return point2;
     }
 }
