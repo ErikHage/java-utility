@@ -1,4 +1,4 @@
-package com.tfr.math.vector;
+package com.tfr.math.point;
 
 public interface Point {
 

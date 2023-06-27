@@ -1,10 +1,10 @@
 package com.tfr.math.vector;
 
 import com.tfr.math.trig.AngleUnits;
+import com.tfr.math.vector.force.ForceXY;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class VectorMathTest {
 
@@ -17,8 +17,6 @@ public class VectorMathTest {
 
         assertEquals(1.0, resultant.xProjection());
         assertEquals(1.0, resultant.yProjection());
-        assertEquals(Math.sqrt(2.0), VectorMath.magnitude(resultant));
-        assertEquals(45.0, resultant.direction(AngleUnits.DEGREES));
     }
 
     @Test
@@ -31,8 +29,6 @@ public class VectorMathTest {
 
         assertEquals(3.0, resultant.xProjection());
         assertEquals(4.0, resultant.yProjection());
-        assertEquals(5.0, VectorMath.magnitude(resultant));
-        assertEquals(53.13, resultant.direction(AngleUnits.DEGREES), 0.001);
     }
 
     @Test
@@ -44,62 +40,18 @@ public class VectorMathTest {
 
         assertEquals(-1.0, resultant.xProjection());
         assertEquals(-1.0, resultant.yProjection());
-        assertEquals(Math.sqrt(2.0), VectorMath.magnitude(resultant));
-        assertEquals(225.0, resultant.direction(AngleUnits.DEGREES));
     }
 
     @Test
-    public void testAdjustAngle_GivenCaseO_ExpectException() {
-        assertThrows(RuntimeException.class, () -> {
-            VectorMath.adjustAngle(0.5, VectorDirection.O);
-        });
-    }
+    public void testDirectionAngles_Given000to528_ExpectCorrectAngles() {
+        VectorXYZ vector = new VectorXYZ(0, 5, 0, 2, 0, 8);
 
-    @Test
-    public void testAdjustAngle_GivenCaseE_Expect0() {
-        double result = VectorMath.adjustAngle(0.5, VectorDirection.E);
-        assertEquals(0, result);
-    }
+        assertEquals(Math.acos(5/Math.sqrt(93)), VectorMath.alpha(vector, AngleUnits.RADIANS));
+        assertEquals(Math.acos(2/Math.sqrt(93)), VectorMath.beta(vector, AngleUnits.RADIANS));
+        assertEquals(Math.acos(8/Math.sqrt(93)), VectorMath.gamma(vector, AngleUnits.RADIANS));
 
-    @Test
-    public void testAdjustAngle_GivenCaseNE_ExpectAngle() {
-        double result = VectorMath.adjustAngle(0.5, VectorDirection.NE);
-        assertEquals(0.5, result);
-    }
-
-    @Test
-    public void testAdjustAngle_GivenCaseN_ExpectPiOver2() {
-        double result = VectorMath.adjustAngle(0.5, VectorDirection.N);
-        assertEquals(Math.PI / 2, result);
-    }
-
-    @Test
-    public void testAdjustAngle_GivenCaseNW_ExpectPiMinusAngle() {
-        double result = VectorMath.adjustAngle(0.5, VectorDirection.NW);
-        assertEquals(Math.PI - 0.5, result);
-    }
-
-    @Test
-    public void testAdjustAngle_GivenCaseW_ExpectPi() {
-        double result = VectorMath.adjustAngle(0.5, VectorDirection.W);
-        assertEquals(Math.PI, result);
-    }
-
-    @Test
-    public void testAdjustAngle_GivenCaseSW_ExpectPiPlusAngle() {
-        double result = VectorMath.adjustAngle(0.5, VectorDirection.SW);
-        assertEquals(Math.PI + 0.5, result);
-    }
-
-    @Test
-    public void testAdjustAngle_GivenCaseS_Expect3PiOver2() {
-        double result = VectorMath.adjustAngle(0.5, VectorDirection.S);
-        assertEquals((3.0 / 2.0) * Math.PI, result);
-    }
-
-    @Test
-    public void testAdjustAngle_GivenCaseSE_Expect2PiMinusAngle() {
-        double result = VectorMath.adjustAngle(0.5, VectorDirection.SE);
-        assertEquals(2 * Math.PI - 0.5, result);
+        assertEquals(58.77, VectorMath.alpha(vector, AngleUnits.DEGREES), 0.01);
+        assertEquals(78.03, VectorMath.beta(vector, AngleUnits.DEGREES), 0.01);
+        assertEquals(33.95, VectorMath.gamma(vector, AngleUnits.DEGREES), 0.01);
     }
 }

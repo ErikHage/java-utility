@@ -1,6 +1,6 @@
 package com.tfr.math.vector;
 
-import com.tfr.math.trig.AngleUnits;
+import com.tfr.math.point.Point2D;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,65 +8,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class VectorXYTest {
 
     @Test
-    public void testMagnitude_Givenx3y4_Expect5() {
-        VectorXY vector = new VectorXY(0.0,3.0, 0.0,4.0);
-
-        assertEquals(5.0, VectorMath.magnitude(vector));
+    public void testPoint1_ExpectPoint1() {
+        Vector v = new VectorXY(0,1,0,2);
+        assertEquals(new Point2D(0,0), v.point1());
     }
 
     @Test
-    public void testMagnitude_Givenxneg3y4_Expect5() {
-        VectorXY vector = new VectorXY(0.0,-3.0, 0.0,4.0);
-
-        assertEquals(5.0, VectorMath.magnitude(vector));
+    public void testPoint2_ExpectPoint2() {
+        Vector v = new VectorXY(0,1,0,2);
+        assertEquals(new Point2D(1,2), v.point2());
     }
 
     @Test
-    public void testMagnitude_Givenx3yneg4_Expect5() {
-        VectorXY vector = new VectorXY(0.0,3.0, 0.0,-4.0);
-
-        assertEquals(5.0, VectorMath.magnitude(vector));
+    public void testProjections_ExpectCorrectValues() {
+        Vector v = new VectorXY(1,3,1,5);
+        assertEquals(2, v.xProjection());
+        assertEquals(4, v.yProjection());
+        assertEquals(0, v.zProjection());
     }
 
     @Test
-    public void testMagnitude_Givenxneg3yneg4_Expect5() {
-        VectorXY vector = new VectorXY(0.0,-3.0, 0.0,-4.0);
-
-        assertEquals(5.0, VectorMath.magnitude(vector));
-    }
-
-    @Test
-    public void testDirection_Givenx3y3Degrees_Expect45() {
-        VectorXY vector = new VectorXY(0.0, 3.0, 0.0, 3.0);
-
-        assertEquals(45.0, vector.direction(AngleUnits.DEGREES), 0.001);
-    }
-
-    @Test
-    public void testDirection_Givenxneg3y3Degrees_Expect45() {
-        VectorXY vector = new VectorXY(0.0, -3.0, 0.0, 3.0);
-
-        assertEquals(135.0, vector.direction(AngleUnits.DEGREES), 0.001);
-    }
-
-    @Test
-    public void testDirection_Givenx3yneg3Degrees_Expect45() {
-        VectorXY vector = new VectorXY(0.0, 3.0, 0.0, -3.0);
-
-        assertEquals(315.0, vector.direction(AngleUnits.DEGREES), 0.001);
-    }
-
-    @Test
-    public void testDirection_Givenxneg3yneg3Degrees_Expect45() {
-        VectorXY vector = new VectorXY(0.0, -3.0, 0.0, -3.0);
-
-        assertEquals(225.0, vector.direction(AngleUnits.DEGREES), 0.001);
-    }
-
-    @Test
-    public void testAngle_Givenx3y3Radians_ExpectPiOver4() {
-        VectorXY vector = new VectorXY(0.0, 3.0, 0.0, 3.0);
-
-        assertEquals(Math.PI/4, vector.direction(AngleUnits.RADIANS));
+    public void testToString() {
+        Vector v = new VectorXY(1,1,3,5);
+        assertEquals("VectorXY{point1=Point2D[x=1.0, y=3.0], point2=Point2D[x=1.0, y=5.0]}", v.toString());
     }
 }
