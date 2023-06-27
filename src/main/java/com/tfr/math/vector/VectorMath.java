@@ -68,4 +68,24 @@ public class VectorMath {
                 + Math.pow(vector.point2().z() - vector.point1().z(), 2)
         );
     }
+
+    public static double xAngle(Vector vector) {
+        double adjacent = vector.point2().x() - vector.point1().x();
+        return directionCosine(vector, adjacent);
+    }
+
+    public static double yAngle(Vector vector) {
+        double adjacent = vector.point2().y() - vector.point1().y();
+        return directionCosine(vector, adjacent);
+    }
+
+    public static double zAngle(Vector vector) {
+        double adjacent = vector.point2().z() - vector.point1().z();
+        return directionCosine(vector, adjacent);
+    }
+
+    private static double directionCosine(Vector vector, double adjacent) {
+        double hypotenuse = magnitude(vector);
+        return Math.acos(adjacent / Math.abs(hypotenuse));
+    }
 }
