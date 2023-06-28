@@ -14,6 +14,12 @@ public class VectorXYTest {
     }
 
     @Test
+    public void testPoint1_ExpectPoint1DefaultsToZero() {
+        Vector v = new VectorXY(1,2);
+        assertEquals(new Point2D(0,0), v.point1());
+    }
+
+    @Test
     public void testPoint2_ExpectPoint2() {
         Vector v = new VectorXY(0,1,0,2);
         assertEquals(new Point2D(1,2), v.point2());

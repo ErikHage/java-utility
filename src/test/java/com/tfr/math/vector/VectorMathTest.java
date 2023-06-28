@@ -54,4 +54,26 @@ public class VectorMathTest {
         assertEquals(78.03, VectorMath.beta(vector, AngleUnits.DEGREES), 0.01);
         assertEquals(33.95, VectorMath.gamma(vector, AngleUnits.DEGREES), 0.01);
     }
+
+    @Test
+    public void testDotProduct_Given123and456_Expect32() {
+        Vector v1 = new VectorXYZ(1,2,3);
+        Vector v2 = new VectorXYZ(4,5,6);
+
+        double result = VectorMath.dotProduct(v1, v2);
+
+        assertEquals(32, result);
+    }
+
+    @Test
+    public void testCrossProduct_Given345and789_Expectneg4x8yneg4z() {
+        Vector v1 = new VectorXYZ(3,4,5);
+        Vector v2 = new VectorXYZ(7,8,9);
+
+        Vector result = VectorMath.crossProduct(v1, v2);
+
+        assertEquals(-4, result.xProjection());
+        assertEquals(8, result.yProjection());
+        assertEquals(-4, result.zProjection());
+    }
 }

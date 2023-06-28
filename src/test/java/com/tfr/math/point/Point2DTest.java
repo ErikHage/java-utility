@@ -7,8 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class Point2DTest {
 
     @Test
-    public void testZ_Expect0() {
-        Point p = new Point2D(1,1);
+    public void testXYZ_Expect120() {
+        Point p = new Point2D(1,2);
+        assertEquals(1, p.x());
+        assertEquals(2, p.y());
         assertEquals(0, p.z());
     }
 }

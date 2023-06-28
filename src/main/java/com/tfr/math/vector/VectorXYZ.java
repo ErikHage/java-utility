@@ -12,6 +12,11 @@ public class VectorXYZ implements Vector {
         this.point2 = new Point3D(x2, y2, z2);
     }
 
+    public VectorXYZ(double x, double y, double z) {
+        this.point1 = new Point3D(0, 0, 0);
+        this.point2 = new Point3D(x, y, z);
+    }
+
     @Override
     public Point3D point1() {
         return point1;

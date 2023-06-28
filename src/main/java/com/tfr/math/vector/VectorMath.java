@@ -26,6 +26,22 @@ public class VectorMath {
         );
     }
 
+    public static double dotProduct(Vector v1, Vector v2) {
+        return (v1.xProjection() * v2.xProjection())
+                + (v1.yProjection() * v2.yProjection())
+                + (v1.zProjection() * v2.zProjection());
+    }
+
+    public static Vector crossProduct(Vector v1, Vector v2) {
+        double x = (v1.yProjection() * v2.zProjection()) - (v1.zProjection() * v2.yProjection());
+        double y = (v1.xProjection() * v2.zProjection()) - (v1.zProjection() * v2.xProjection());
+        double z = (v1.xProjection() * v2.yProjection()) - (v1.yProjection() * v2.xProjection());
+
+        y = y * -1;
+
+        return new VectorXYZ(x, y, z);
+    }
+
     public static double alpha(Vector vector, AngleUnits angleUnits) {
         double adjacent = vector.xProjection();
         return directionAngle(magnitude(vector), adjacent, angleUnits);

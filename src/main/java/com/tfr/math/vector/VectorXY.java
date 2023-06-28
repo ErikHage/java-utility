@@ -12,6 +12,11 @@ public class VectorXY implements Vector {
         this.point2 = new Point2D(x2, y2);
     }
 
+    public VectorXY(double x, double y) {
+        this.point1 = new Point2D(0, 0);
+        this.point2 = new Point2D(x, y);
+    }
+
     @Override
     public Point2D point1() {
         return point1;
