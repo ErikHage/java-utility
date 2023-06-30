@@ -42,6 +42,17 @@ public class VectorMath {
         return new VectorXYZ(x, y, z);
     }
 
+    public static double angle(Vector v1, Vector v2) {
+        double dotProd = dotProduct(v1, v2);
+        double magnitude1 = magnitude(v1);
+        double magnitude2 = magnitude(v2);
+        double magnitudeProd = magnitude1 * magnitude2;
+
+        // not working bc of double rounding, maybe use BigDecimal?
+
+        return Math.acos(dotProd / magnitudeProd);
+    }
+
     public static double alpha(Vector vector, AngleUnits angleUnits) {
         double adjacent = vector.xProjection();
         return directionAngle(magnitude(vector), adjacent, angleUnits);
