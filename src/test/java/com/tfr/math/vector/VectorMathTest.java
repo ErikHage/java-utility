@@ -84,4 +84,12 @@ public class VectorMathTest {
 
         assertEquals(0.488, VectorMath.angle(v1, v2), 0.001);
     }
+
+    @Test
+    void testAngle_GivenTwoVectors111andneg2neg2neg2_ExpectPi() {
+        Vector v1 = new VectorXYZ(1,1,1);
+        Vector v2 = new VectorXYZ(-2,-2,-2);
+
+        assertEquals(Math.PI, VectorMath.angle(v1, v2), 0.001);
+    }
 }

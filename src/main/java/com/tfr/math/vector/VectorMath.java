@@ -48,9 +48,14 @@ public class VectorMath {
         double magnitude2 = magnitude(v2);
         double magnitudeProd = magnitude1 * magnitude2;
 
-        // not working bc of double rounding, maybe use BigDecimal?
+        double ratio = dotProd / magnitudeProd;
 
-        return Math.acos(dotProd / magnitudeProd);
+        // correct rounding errors bc of floating point inaccuracy
+        if (ratio < -1 || ratio > 1) {
+            ratio = ratio / Math.abs(ratio);
+        }
+
+        return Math.acos(ratio);
     }
 
     public static double alpha(Vector vector, AngleUnits angleUnits) {
