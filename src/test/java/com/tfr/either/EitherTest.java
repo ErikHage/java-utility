@@ -19,4 +19,13 @@ class EitherTest {
 
         assertTrue(result instanceof Right);
     }
+
+    @Test
+    void shouldMapLeft() {
+        Either<String, Integer> result = Either.left("a");
+
+        Either<String, Integer> mapResult = result.mapLeft(left -> left + "b");
+
+        assertEquals("ab", mapResult.getLeft().orElse("c"));
+    }
 }
