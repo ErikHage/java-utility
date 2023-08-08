@@ -28,4 +28,13 @@ class EitherTest {
 
         assertEquals("ab", mapResult.getLeft().orElse("c"));
     }
+
+    @Test
+    void shouldMapRight() {
+        Either<String, Integer> result = Either.right(10);
+
+        Either<String, Integer> mapResult = result.map(r -> r + 2);
+
+        assertEquals(12, mapResult.getRight().orElse(100));
+    }
 }
