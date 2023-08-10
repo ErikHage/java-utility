@@ -37,4 +37,13 @@ class EitherTest {
 
         assertEquals(12, mapResult.getRight().orElse(100));
     }
+
+    @Test
+    void shouldFlatMapLeft() {
+        Either<String, Integer> result = Either.left("abcd");
+
+        Either<Integer, Integer> mapped = result.flatMapLeft(left -> Either.left(left.length()));
+
+        assertEquals(4, mapped.getLeft().orElse(100));
+    }
 }
