@@ -71,4 +71,18 @@ class EitherTest {
 
         assertEquals(10, result.getRight().orElse(1));
     }
+
+    @Test
+    void shouldFilterRight() {
+        Either<String, Integer> either = Either.right(8);
+
+        Either<String, Integer> result = either.filter(right -> {
+            if (right != 8) {
+                return Optional.of("error");
+            }
+            return Optional.empty();
+        });
+
+        assertEquals(8, result.getRight().orElse(999));
+    }
 }
