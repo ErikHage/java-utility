@@ -96,4 +96,15 @@ class EitherTest {
 
         assertEquals(4, result);
     }
+
+    @Test
+    void shouldFoldWithRightValue() {
+        Either<String, Integer> either = Either.right(10);
+
+        int result = either.fold(
+                String::length,
+                right -> right + 5);
+
+        assertEquals(15, result);
+    }
 }
