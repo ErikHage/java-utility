@@ -36,6 +36,15 @@ class RightTest {
     }
 
     @Test
+    void shouldMapLeft() {
+        Either<String, Integer> right = Either.right(10);
+
+        Either<String, Integer> result = right.mapLeft(l -> l + 5);
+
+        assertSame(right, result);
+    }
+
+    @Test
     void shouldBeRight() {
         Either<String, Integer> right = Either.right(10);
 
