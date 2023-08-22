@@ -54,6 +54,15 @@ class RightTest {
     }
 
     @Test
+    void shouldFilterLeft() {
+        Either<String, Integer> right = Either.right(10);
+
+        Either<String, Integer> result = right.filterLeft(l -> Optional.empty());
+
+        assertSame(right, result);
+    }
+
+    @Test
     void shouldBeRight() {
         Either<String, Integer> right = Either.right(10);
 
