@@ -63,6 +63,24 @@ class RightTest {
     }
 
     @Test
+    void shouldFoldRight() {
+        Either<String, Integer> right = Either.right(10);
+
+        String result = right.fold(l -> "s", r -> "x");
+
+        assertEquals("x", result);
+    }
+
+    @Test
+    void shouldFoldLeft() {
+        Either<String, Integer> right = Either.left("string");
+
+        String result = right.fold(l -> "s", r -> "x");
+
+        assertEquals("s", result);
+    }
+
+    @Test
     void shouldBeRight() {
         Either<String, Integer> right = Either.right(10);
 

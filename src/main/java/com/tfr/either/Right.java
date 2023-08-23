@@ -52,7 +52,9 @@ public class Right<L,R> extends Either<L,R> {
     }
 
     @Override
-    public <U> U fold(Function<? super L, ? extends U> leftMapper, Function<? super R, ? extends U> rightMapper) {
+    public <U> U fold(
+            Function<? super L, ? extends U> leftMapper,
+            Function<? super R, ? extends U> rightMapper) {
         return rightMapper.apply(value);
     }
 
