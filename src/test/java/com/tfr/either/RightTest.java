@@ -95,4 +95,11 @@ class RightTest {
 
         assertTrue(right.isRight());
     }
+
+    @Test
+    void shouldReturnEmptyOptionalCallingGetLeft() {
+        Either<String, Integer> right = Either.right(10);
+
+        assertEquals(Optional.empty(), right.getLeft());
+    }
 }
