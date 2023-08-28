@@ -27,12 +27,21 @@ class RightTest {
     }
 
     @Test
-    void shouldFilter() {
+    void shouldFilterAndReturnThis() {
         Either<String, Integer> right = Either.right(10);
 
         Either<String, Integer> result = right.filter(r -> Optional.empty());
 
         assertEquals(10, result.getRight().orElse(999));
+    }
+
+    @Test
+    void shouldFilterAndReturnLeft() {
+        Either<String, Integer> right = Either.right(10);
+
+        Either<String, Integer> result = right.filter(r -> Optional.of("xxx"));
+
+        assertTrue(result.isLeft());
     }
 
     @Test
