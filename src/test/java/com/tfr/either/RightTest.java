@@ -102,4 +102,14 @@ class RightTest {
 
         assertEquals(Optional.empty(), right.getLeft());
     }
+
+    @Test
+    void shouldOrElseThrow() {
+        Either<String, Integer> right = Either.left("some");
+
+
+        assertThrows(Exception.class, () -> {
+            right.orElseThrow((l) -> new Exception("message"));
+        });
+    }
 }
