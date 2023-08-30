@@ -104,12 +104,21 @@ class RightTest {
     }
 
     @Test
-    void shouldOrElseThrow() {
+    void shouldThrowWhenLeftOnOrElseThrow() {
         Either<String, Integer> right = Either.left("some");
 
 
         assertThrows(Exception.class, () -> {
             right.orElseThrow((l) -> new Exception("message"));
         });
+    }
+
+    @Test
+    void shouldNotThrowWhenRightOnOrElseThrow() throws Exception {
+        Either<String, Integer> right = Either.right(10);
+
+        int result = right.orElseThrow((l) -> new Exception("message"));
+
+        assertEquals(10, result);
     }
 }
