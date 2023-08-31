@@ -3,6 +3,7 @@ package com.tfr.either;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
+import java.util.function.Consumer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -107,7 +108,6 @@ class RightTest {
     void shouldThrowWhenLeftOnOrElseThrow() {
         Either<String, Integer> right = Either.left("some");
 
-
         assertThrows(Exception.class, () -> {
             right.orElseThrow((l) -> new Exception("message"));
         });
@@ -120,5 +120,15 @@ class RightTest {
         int result = right.orElseThrow((l) -> new Exception("message"));
 
         assertEquals(10, result);
+    }
+
+    @Test
+    void shouldOrElseIfLeftOrElse() {
+        Either<String, Integer> right = Either.right(10);
+
+        Consumer<String> leftConsumer = (s) -> fail("should have been a Right instance");
+        Consumer<Integer> rightConsumer = (i) -> assertEquals(10, i);
+
+        right.ifLeftOrElse(leftConsumer, rightConsumer);
     }
 }
