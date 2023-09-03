@@ -27,4 +27,11 @@ class LeftTest {
         assertEquals("string", result.getLeft().orElse("not string"));
         assertEquals(Optional.empty(), result.getRight());
     }
+
+    @Test
+    void shouldGetLeft() {
+        Either<String, Integer> either = Either.left("string");
+
+        assertEquals("string", either.getLeft().orElse("not"));
+    }
 }
