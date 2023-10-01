@@ -34,4 +34,14 @@ class LeftTest {
 
         assertEquals("string", either.getLeft().orElse("not"));
     }
+
+    @Test
+    void shouldNotFlatMapLeft() {
+        Either<String, Integer> either = Either.left("string");
+
+        Either<String, Double> result = either.flatMap(r -> Either.right(r * 1.2));
+
+        assertEquals("string", result.getLeft().orElse("not string"));
+        assertEquals(Optional.empty(), result.getRight());
+    }
 }
