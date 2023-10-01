@@ -19,16 +19,6 @@ class LeftTest {
     }
 
     @Test
-    void shouldNotMapRightValue() {
-        Either<String, Integer> either = Either.left("string");
-
-        Either<String, Double> result = either.map(r -> r * 1.1);
-
-        assertEquals("string", result.getLeft().orElse("not string"));
-        assertEquals(Optional.empty(), result.getRight());
-    }
-
-    @Test
     void shouldGetLeft() {
         Either<String, Integer> either = Either.left("string");
 
@@ -43,5 +33,14 @@ class LeftTest {
 
         assertEquals("string", result.getLeft().orElse("not string"));
         assertEquals(Optional.empty(), result.getRight());
+    }
+
+    @Test
+    void shouldNotFilter() {
+        Either<String, Integer> either = Either.left("string");
+
+        Either<String, Integer> result = either.filter(r -> Optional.of("xxx"));
+
+        assertEquals("string", result.getLeft().orElse("not string"));
     }
 }
