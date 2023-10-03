@@ -43,4 +43,13 @@ class LeftTest {
 
         assertEquals("string", result.getLeft().orElse("not string"));
     }
+
+    @Test
+    void shouldMapLeft() {
+        Either<String, Integer> either = Either.left("string");
+
+        Either<String, Integer> result = either.mapLeft(l -> "other string");
+
+        assertEquals("other string", result.getLeft().orElse("not string"));
+    }
 }
