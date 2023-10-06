@@ -64,7 +64,7 @@ class LeftTest {
     }
 
     @Test
-    void shouldFilterLeft() {
+    void shouldNotFilterLeft() {
         Either<String, Integer> either = Either.left("string");
 
         Either<String, Integer> result = either.filterLeft(l -> Optional.empty());
