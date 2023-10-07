@@ -81,4 +81,16 @@ class LeftTest {
 
         assertEquals(Optional.of(1), result.getRight());
     }
+
+    @Test
+    void shouldFoldLeft() {
+        Either<String, Integer> either = Either.left("string");
+
+        String result = either.fold(
+                l -> "new string",
+                r -> "not string"
+        );
+
+        assertEquals("new string", result);
+    }
 }
