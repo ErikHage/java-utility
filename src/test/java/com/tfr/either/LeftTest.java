@@ -93,4 +93,16 @@ class LeftTest {
 
         assertEquals("new string", result);
     }
+
+    @Test
+    void shouldActionIfLeft() {
+        Either<String, Integer> either = Either.left("string");
+
+        either.ifLeftOrElse(
+                l -> {},
+                r -> {
+                    fail("called right action, should have called left action");
+                }
+        );
+    }
 }
