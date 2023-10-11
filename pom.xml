@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>JavaUtility</name>
-	<description>Java classes</description>
+	<description>Java utility classes</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
