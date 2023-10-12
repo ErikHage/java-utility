@@ -4,6 +4,12 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+/**
+ * Internal implementation of a Right-Either.
+ *
+ * @param <L> the type of the LHS value
+ * @param <R> the type of the RHS value
+ */
 public class Right<L,R> extends Either<L,R> {
     private final R value;
 
