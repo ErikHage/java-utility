@@ -11,10 +11,14 @@ class EithersTest {
 
     @Test
     void shouldGetFirstFailureWhenRight() {
-        Either<String, Integer> either = Either.right(1);
+        List<Either<String, Integer>> eithers = List.of(
+                Either.right(1),
+                Either.right(2)
+        );
 
-        Either<String, List<Integer>> result = Optional.of(either).stream().collect(Eithers.firstFailure());
 
-        assertEquals(List.of(1), result.getRight().orElse(List.of()));
+        Either<String, List<Integer>> result = eithers.stream().collect(Eithers.firstFailure());
+
+        assertEquals(List.of(1, 2), result.getRight().orElse(List.of()));
     }
 }
