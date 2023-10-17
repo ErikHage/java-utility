@@ -21,6 +21,19 @@ class EithersTest {
     }
 
     @Test
+    void shouldGetFirstLeftWhenFirstFailureCollect() {
+        List<Either<String, Integer>> eithers = List.of(
+                Either.right(1),
+                Either.left("first"),
+                Either.right(2)
+        );
+
+        Either<String, List<Integer>> result = eithers.stream().collect(Eithers.firstFailure());
+
+        assertEquals("first", result.getLeft().orElse("wrong"));
+    }
+
+    @Test
     void shouldGetFirstLeftWhenFirstFailureCollectHasMultipleLefts() {
         List<Either<String, Integer>> eithers = List.of(
                 Either.right(1),
