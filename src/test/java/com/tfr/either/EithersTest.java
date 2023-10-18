@@ -46,4 +46,16 @@ class EithersTest {
 
         assertEquals("first", result.getLeft().orElse("wrong"));
     }
+
+    @Test
+    void shouldGetListOfRightsWhenAllFailuresCollectHasOnlyRights() {
+        List<Either<String, Integer>> eithers = List.of(
+                Either.right(1),
+                Either.right(2)
+        );
+
+        Either<List<String>, List<Integer>> result = eithers.stream().collect(Eithers.allFailures());
+
+        assertEquals(List.of(1, 2), result.getRight().orElse(List.of()));
+    }
 }
