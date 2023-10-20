@@ -3,6 +3,7 @@ package com.tfr.either;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -69,5 +70,18 @@ class EithersTest {
         Either<List<String>, List<Integer>> result = eithers.stream().collect(Eithers.allFailures());
 
         assertEquals(List.of("first", "second"), result.getLeft().orElse(List.of()));
+    }
+
+    @Test
+    void shouldCollectToOptionalList() {
+        List<Either<String, Integer>> eithers = List.of(
+                Either.left("first"),
+                Either.left("second")
+        );
+
+        Optional<List<Object>> result = eithers.stream().collect(Eithers.toOptionalList());
+
+        assertTrue(result.isPresent());
+        assertEquals(2, result.get().size());
     }
 }
