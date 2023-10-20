@@ -73,10 +73,23 @@ class EithersTest {
     }
 
     @Test
-    void shouldCollectToOptionalList() {
+    void shouldCollectToOptionalListOfLefts() {
         List<Either<String, Integer>> eithers = List.of(
                 Either.left("first"),
                 Either.left("second")
+        );
+
+        Optional<List<Object>> result = eithers.stream().collect(Eithers.toOptionalList());
+
+        assertTrue(result.isPresent());
+        assertEquals(2, result.get().size());
+    }
+
+    @Test
+    void shouldCollectToOptionalListOfRights() {
+        List<Either<String, Integer>> eithers = List.of(
+                Either.right(1),
+                Either.right(2)
         );
 
         Optional<List<Object>> result = eithers.stream().collect(Eithers.toOptionalList());
