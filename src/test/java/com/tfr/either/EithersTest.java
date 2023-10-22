@@ -97,4 +97,24 @@ class EithersTest {
         assertTrue(result.isPresent());
         assertEquals(2, result.get().size());
     }
+
+    @Test
+    void shouldCollectToOptionalListOfRightsAndLefts() {
+        List<Either<String, Integer>> eithers = List.of(
+                Either.right(1),
+                Either.left("first"),
+                Either.left("second"),
+                Either.right(2)
+        );
+
+        Optional<List<Either<String, Integer>>> result = eithers.stream().collect(Eithers.toOptionalList());
+
+        assertTrue(result.isPresent());
+        assertEquals(4, result.get().size());
+        assertEquals(1, result.get().get(0).getRight().orElse(9));
+        assertEquals("first", result.get().get(1).getLeft().orElse("x"));
+        assertEquals("second", result.get().get(2).getLeft().orElse("x"));
+        assertEquals(2, result.get().get(3).getRight().orElse(9));
+
+    }
 }
