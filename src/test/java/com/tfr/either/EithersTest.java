@@ -92,10 +92,12 @@ class EithersTest {
                 Either.right(2)
         );
 
-        Optional<List<Object>> result = eithers.stream().collect(Eithers.toOptionalList());
+        Optional<List<Either<String, Integer>>> result = eithers.stream().collect(Eithers.toOptionalList());
 
         assertTrue(result.isPresent());
         assertEquals(2, result.get().size());
+        assertEquals(1, result.get().get(0).getRight().orElse(9));
+        assertEquals(2, result.get().get(1).getRight().orElse(9));
     }
 
     @Test
