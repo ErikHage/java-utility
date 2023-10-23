@@ -79,10 +79,12 @@ class EithersTest {
                 Either.left("second")
         );
 
-        Optional<List<Object>> result = eithers.stream().collect(Eithers.toOptionalList());
+        Optional<List<Either<String, Integer>>> result = eithers.stream().collect(Eithers.toOptionalList());
 
         assertTrue(result.isPresent());
         assertEquals(2, result.get().size());
+        assertEquals("first", result.get().get(0).getLeft().orElse("xxx"));
+        assertEquals("second", result.get().get(1).getLeft().orElse("xxx"));
     }
 
     @Test
