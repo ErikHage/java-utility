@@ -119,6 +119,12 @@ class EithersTest {
         assertEquals("first", result.get().get(1).getLeft().orElse("x"));
         assertEquals("second", result.get().get(2).getLeft().orElse("x"));
         assertEquals(2, result.get().get(3).getRight().orElse(9));
+    }
 
+    @Test
+    void shouldReturnEmptyOptionalList() {
+        Optional<List<String>> result = Eithers.optionalList(List.of());
+
+        assertFalse(result.isPresent());
     }
 }
