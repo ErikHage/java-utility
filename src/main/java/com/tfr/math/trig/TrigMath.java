@@ -2,6 +2,11 @@ package com.tfr.math.trig;
 
 public class TrigMath {
 
+    /**
+     * Convert angle in degrees to angle in radians
+     * @param degrees angle in degrees
+     * @return angle in radians
+     */
     public static double toRadians(double degrees) {
         return degrees * (Math.PI/180);
     }
