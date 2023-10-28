@@ -20,6 +20,13 @@ public class TrigMath {
         return radians * (180/Math.PI);
     }
 
+    /**
+     * Calculate the projection of the vector defined by the provided magnitude and
+     * angle from the x-axis
+     * @param magnitude - the magnitude of the vector
+     * @param angleInRadians - the angle of the vector from the x-axis in radians
+     * @return x projection in same length units as magnitude
+     */
     public static double getXProjection(double magnitude, double angleInRadians) {
         return magnitude * Math.cos(angleInRadians);
     }
