@@ -24,13 +24,20 @@ public class TrigMath {
      * Calculate the projection of the vector defined by the provided magnitude and
      * angle from the x-axis
      * @param magnitude - the magnitude of the vector
-     * @param angleInRadians - the angle of the vector from the x-axis in radians
+     * @param angleInRadians - the direction of the vector in radians
      * @return x projection in same length units as magnitude
      */
     public static double getXProjection(double magnitude, double angleInRadians) {
         return magnitude * Math.cos(angleInRadians);
     }
 
+    /**
+     * Calculate the projection of the vector defined by the provided magnitude and
+     * angle from the x-axis
+     * @param magnitude - the magnitude of the vector
+     * @param angleInRadians - the direction of the vector in radians
+     * @return y projection in same length units as magnitude
+     */
     public static double getYProjection(double magnitude, double angleInRadians) {
         return magnitude * Math.sin(angleInRadians);
     }
