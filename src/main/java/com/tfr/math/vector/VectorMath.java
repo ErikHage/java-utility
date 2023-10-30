@@ -112,6 +112,12 @@ public class VectorMath {
         return directionAngle(magnitude(vector), adjacent, angleUnits);
     }
 
+    /**
+     * Calculate the direction cosine gamma of a vector
+     * @param vector - the vector
+     * @param angleUnits - the units of the result
+     * @return - double - angle in units defined by second parameter
+     */
     public static double gamma(Vector vector, AngleUnits angleUnits) {
         double adjacent = vector.zProjection();
         return directionAngle(magnitude(vector), adjacent, angleUnits);
