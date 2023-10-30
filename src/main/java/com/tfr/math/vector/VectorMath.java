@@ -41,7 +41,7 @@ public class VectorMath {
     }
 
     /**
-     * Perform the dot product between the two given vectors.
+     * Perform the dot product between two vectors.
      * @param v1 - first vector
      * @param v2 - second vector
      * @return - double - the result of the dot product of the given vectors
@@ -52,6 +52,12 @@ public class VectorMath {
                 + (v1.zProjection() * v2.zProjection());
     }
 
+    /**
+     * Perform the cross product between two vectors
+     * @param v1 - first vector
+     * @param v2 - second vector
+     * @return - Vector - the cross product of the given vectors
+     */
     public static Vector crossProduct(Vector v1, Vector v2) {
         double x = (v1.yProjection() * v2.zProjection()) - (v1.zProjection() * v2.yProjection());
         double y = (v1.xProjection() * v2.zProjection()) - (v1.zProjection() * v2.xProjection());
