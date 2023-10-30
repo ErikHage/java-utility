@@ -101,6 +101,12 @@ public class VectorMath {
         return directionAngle(magnitude(vector), adjacent, angleUnits);
     }
 
+    /**
+     * Calculate the direction cosine beta of a vector
+     * @param vector - the vector
+     * @param angleUnits - the units of the result
+     * @return - double - angle in units defined by second parameter
+     */
     public static double beta(Vector vector, AngleUnits angleUnits) {
         double adjacent = vector.yProjection();
         return directionAngle(magnitude(vector), adjacent, angleUnits);
