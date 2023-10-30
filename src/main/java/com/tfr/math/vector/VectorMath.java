@@ -68,6 +68,12 @@ public class VectorMath {
         return new VectorXYZ(x, y, z);
     }
 
+    /**
+     * Calculate the angle between two vectors
+     * @param v1 - first vector
+     * @param v2 - second vector
+     * @return - double - the angle between the two vectors in radians
+     */
     public static double angle(Vector v1, Vector v2) {
         double dotProd = dotProduct(v1, v2);
         double magnitude1 = magnitude(v1);
