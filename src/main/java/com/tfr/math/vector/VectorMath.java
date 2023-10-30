@@ -90,6 +90,12 @@ public class VectorMath {
         return Math.acos(ratio);
     }
 
+    /**
+     * Calculate the direction cosine alpha of a vector
+     * @param vector - the vector
+     * @param angleUnits - the units of the result
+     * @return - double - angle in units defined by second parameter
+     */
     public static double alpha(Vector vector, AngleUnits angleUnits) {
         double adjacent = vector.xProjection();
         return directionAngle(magnitude(vector), adjacent, angleUnits);
