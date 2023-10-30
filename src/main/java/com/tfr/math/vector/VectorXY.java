@@ -26,6 +26,10 @@ public class VectorXY implements Vector {
         return point1;
     }
 
+    /**
+     * The termination point of the vector
+     * @return - Point2D - a point in two-dimensional space
+     */
     @Override
     public Point2D point2() {
         return point2;
