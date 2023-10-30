@@ -9,11 +9,17 @@ import com.tfr.math.vector.force.ForceXY;
  */
 public class VectorMath {
 
-    public static ForceXY calculateResultantForce(ForceXY... vectors) {
-        double xComponents = 0.0;
-        double yComponents = 0.0;
+    /**
+     * Calculate the resultant force of two or more two-dimensional forces.
+     * @param forceOne - the first force in the resultant
+     * @param forces - an array of forces to combine with the first into a resultant
+     * @return - ForceXY - the resultant of the given forces
+     */
+    public static ForceXY calculateResultantForce(ForceXY forceOne, ForceXY... forces) {
+        double xComponents = forceOne.xProjection();
+        double yComponents = forceOne.yProjection();
 
-        for (ForceXY v: vectors) {
+        for (ForceXY v: forces) {
             xComponents += v.xProjection();
             yComponents += v.yProjection();
         }
