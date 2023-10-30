@@ -40,6 +40,12 @@ public class VectorMath {
         );
     }
 
+    /**
+     * Perform the dot product between the two given vectors.
+     * @param v1 - first vector
+     * @param v2 - second vector
+     * @return - double - the result of the dot product of the given vectors
+     */
     public static double dotProduct(Vector v1, Vector v2) {
         return (v1.xProjection() * v2.xProjection())
                 + (v1.yProjection() * v2.yProjection())
