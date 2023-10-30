@@ -27,6 +27,11 @@ public class VectorMath {
         return new ForceXY(xComponents, yComponents);
     }
 
+    /**
+     * Calculate the magnitude of a given vector
+     * @param vector - a 2 or 3 dimensional vector
+     * @return - double - the magnitude of the given vector
+     */
     public static double magnitude(Vector vector) {
         return Math.sqrt(
                 Math.pow(vector.xProjection(), 2)
