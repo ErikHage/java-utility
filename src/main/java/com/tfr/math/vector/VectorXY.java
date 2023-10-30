@@ -17,6 +17,10 @@ public class VectorXY implements Vector {
         this.point2 = new Point2D(x, y);
     }
 
+    /**
+     * The origination point of the vector
+     * @return - Point2D - a point in two-dimensional space
+     */
     @Override
     public Point2D point1() {
         return point1;
