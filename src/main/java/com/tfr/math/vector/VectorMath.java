@@ -4,6 +4,9 @@ import com.tfr.math.trig.AngleUnits;
 import com.tfr.math.trig.TrigMath;
 import com.tfr.math.vector.force.ForceXY;
 
+/**
+ * A collection of mathematical operations for Vectors
+ */
 public class VectorMath {
 
     public static ForceXY calculateResultantForce(ForceXY... vectors) {
