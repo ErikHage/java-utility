@@ -42,6 +42,12 @@ public class TrigMath {
         return magnitude * Math.sin(angleInRadians);
     }
 
+    /**
+     * Find the hypotenuse of a triangle given the other two sides
+     * @param x - side x
+     * @param y - side y
+     * @return length of the hypotenuse in the same units as the provided sides
+     */
     public static double getHypotenuse(double x, double y) {
         return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
     }
