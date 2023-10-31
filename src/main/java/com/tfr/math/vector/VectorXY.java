@@ -7,6 +7,13 @@ public class VectorXY implements Vector {
     private final Point2D point1;
     private final Point2D point2;
 
+    /**
+     * Create a vector with the given point coordinates
+     * @param x1 - x coordinate of vector origin point
+     * @param x2 - x coordinate of vector termination point
+     * @param y1 - y coordinate of vector origin point
+     * @param y2 - y coordinate of vector termination point
+     */
     public VectorXY(double x1, double x2, double y1, double y2) {
         this.point1 = new Point2D(x1, y1);
         this.point2 = new Point2D(x2, y2);
