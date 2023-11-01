@@ -17,6 +17,10 @@ public class VectorXYZ implements Vector {
         this.point2 = new Point3D(x, y, z);
     }
 
+    /**
+     * The origination point of the vector
+     * @return - Point3D - a point in three-dimensional space
+     */
     @Override
     public Point3D point1() {
         return point1;
