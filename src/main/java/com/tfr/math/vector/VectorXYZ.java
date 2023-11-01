@@ -7,6 +7,15 @@ public class VectorXYZ implements Vector {
     private final Point3D point1;
     private final Point3D point2;
 
+    /**
+     * Create a vector with the given point coordinates
+     * @param x1 - x coordinate of vector origin point
+     * @param x2 - x coordinate of vector termination point
+     * @param y1 - y coordinate of vector origin point
+     * @param y2 - y coordinate of vector termination point
+     * @param z1 - z coordinate of vector origin point
+     * @param z2 - z coordinate of vector termination point
+     */
     public VectorXYZ(double x1, double x2, double y1, double y2, double z1, double z2) {
         this.point1 = new Point3D(x1, y1, z1);
         this.point2 = new Point3D(x2, y2, z2);
