@@ -21,6 +21,12 @@ public class VectorXYZ implements Vector {
         this.point2 = new Point3D(x2, y2, z2);
     }
 
+    /**
+     * Create a vector starting at the origin with the given termination point
+     * @param x - x coordinate of vector termination point
+     * @param y - y coordinate of vector termination point
+     * @param z - z coordinate of vector termination point
+     */
     public VectorXYZ(double x, double y, double z) {
         this.point1 = new Point3D(0, 0, 0);
         this.point2 = new Point3D(x, y, z);
