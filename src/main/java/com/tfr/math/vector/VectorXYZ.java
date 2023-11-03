@@ -41,6 +41,10 @@ public class VectorXYZ implements Vector {
         return point1;
     }
 
+    /**
+     * The termination point of the vector
+     * @return - Point3D - a point in three-dimensional space
+     */
     @Override
     public Point3D point2() {
         return point2;
