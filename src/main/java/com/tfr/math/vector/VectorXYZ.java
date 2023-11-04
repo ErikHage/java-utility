@@ -50,6 +50,10 @@ public class VectorXYZ implements Vector {
         return point2;
     }
 
+    /**
+     * Calculate the x projection of the vector
+     * @return - double - the projection of the vector on the x-axis
+     */
     @Override
     public double xProjection() {
         return point2.x() - point1.x();
