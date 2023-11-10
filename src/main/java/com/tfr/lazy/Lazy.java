@@ -20,6 +20,10 @@ public class Lazy<T> {
         this.supplier = supplier;
     }
 
+    /**
+     * Returns the value, loading it from the supplier if it's null
+     * @return T
+     */
     public T getValue() {
         if(value == null) {
             value = supplier.get();
