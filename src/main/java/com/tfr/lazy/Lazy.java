@@ -16,6 +16,10 @@ public class Lazy<T> {
     private T value;
     private final Supplier<T> supplier;
 
+    /**
+     * Create a Lazy instance with a supplier that loads the value when getValue is called
+     * @param supplier - Supplier to load the lazy value
+     */
     public Lazy(Supplier<T> supplier) {
         this.supplier = supplier;
     }
