@@ -10,6 +10,10 @@ public class RingBuffer<T> {
     private int head;
     private int tail;
 
+    /**
+     * Create a ring buffer with max capacity of the provided size
+     * @param size int
+     */
     @SuppressWarnings("unchecked")
     public RingBuffer(int size) {
         this.buffer = (T[]) new Object[size];
