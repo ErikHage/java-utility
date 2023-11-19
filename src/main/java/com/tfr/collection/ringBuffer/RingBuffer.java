@@ -22,6 +22,10 @@ public class RingBuffer<T> {
         this.tail = 0;
     }
 
+    /**
+     * Add an item to the ring buffer
+     * @param item T
+     */
     public void add(T item) {
         buffer[tail] = item;
         if (head == tail && currentSize > 0) {
@@ -31,6 +35,10 @@ public class RingBuffer<T> {
         conditionallyIncrementSize();
     }
 
+    /**
+     * Return the current size of the ring buffer
+     * @return int
+     */
     public int getSize() {
         return currentSize;
     }
