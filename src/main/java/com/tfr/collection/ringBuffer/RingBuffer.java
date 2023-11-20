@@ -50,6 +50,10 @@ public class RingBuffer<T> {
         return buffer[indexAfter(head, index)];
     }
 
+    /**
+     * Remove the head item from the ring buffer
+     * @return T
+     */
     public T remove() {
         if (buffer[head] == null) {
             throw new UnderflowException("Tried to remove from empty buffer");
