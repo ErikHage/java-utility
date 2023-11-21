@@ -65,6 +65,10 @@ public class RingBuffer<T> {
         return item;
     }
 
+    /**
+     * Get all items from the ring buffer. Does not remove the items.
+     * @return ArrayList<T>
+     */
     public List<T> getAll() {
         List<T> items = new ArrayList<>();
         int count = 0;
