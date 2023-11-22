@@ -100,6 +100,10 @@ public class RingBuffer<T> {
         currentSize += (currentSize < buffer.length) ? 1 : 0;
     }
 
+
+    /**
+     * an exception thrown when an attempt is made to remove an item from an empty ring buffer
+     */
     static class UnderflowException extends RuntimeException {
         UnderflowException(String message) {
             super(message);
