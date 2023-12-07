@@ -10,6 +10,10 @@ public interface Vector {
      */
     Point point1();
 
+    /**
+     * The ending point of the vector
+     * @return Point
+     */
     Point point2();
 
     double xProjection();
