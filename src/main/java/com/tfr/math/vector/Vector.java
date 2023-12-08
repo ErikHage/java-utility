@@ -16,6 +16,10 @@ public interface Vector {
      */
     Point point2();
 
+    /**
+     * The x projection of the vector
+     * @return - double - the projection of the vector on the x-axis
+     */
     double xProjection();
 
     double yProjection();
