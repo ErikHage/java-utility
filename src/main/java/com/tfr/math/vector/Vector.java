@@ -28,5 +28,9 @@ public interface Vector {
      */
     double yProjection();
 
+    /**
+     * The z projection of the vector
+     * @return - double - the projection of the vector on the z-axis
+     */
     double zProjection();
 }
