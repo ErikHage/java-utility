@@ -19,6 +19,11 @@ public class VectorXY implements Vector {
         this.point2 = new Point2D(x2, y2);
     }
 
+    /**
+     * Create a vector with the given end point coordinates
+     * @param x - x coordinate of vector termination point
+     * @param y - y coordinate of vector termination point
+     */
     public VectorXY(double x, double y) {
         this.point1 = new Point2D(0, 0);
         this.point2 = new Point2D(x, y);
