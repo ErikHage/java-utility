@@ -9,6 +9,12 @@ import java.util.function.Function;
 
 public interface OperationChain<I> {
 
+    /**
+     * Transforms the operation chain into a different generic type
+     * @param operation Operation<Input, Output>
+     * @return OperationChain<Output>
+     * @param <O> Output type
+     */
     <O> OperationChain<O> transform(Operation<I,O> operation);
 
     <O> OperationChain<O> transform(String operationName, Function<I,O> operation);
