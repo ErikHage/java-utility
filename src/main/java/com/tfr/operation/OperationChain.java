@@ -17,6 +17,13 @@ public interface OperationChain<I> {
      */
     <O> OperationChain<O> transform(Operation<I,O> operation);
 
+    /**
+     * Transforms the operation chain into a different generic type
+     * @param operationName String - The name of the operation
+     * @param operation Operation<Input, Output>
+     * @return OperationChain<Output>
+     * @param <O> Output type
+     */
     <O> OperationChain<O> transform(String operationName, Function<I,O> operation);
 
     OperationChain<I> validate(Validation<I> validation);
