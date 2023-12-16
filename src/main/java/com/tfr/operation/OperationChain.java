@@ -26,6 +26,11 @@ public interface OperationChain<I> {
      */
     <O> OperationChain<O> transform(String operationName, Function<I,O> operation);
 
+    /**
+     * Validates the current state of the OperationChain
+     * @param validation Validation<Input>
+     * @return OperationChain<Input>
+     */
     OperationChain<I> validate(Validation<I> validation);
 
     OperationChain<I> validate(String validationName, Consumer<I> validation);
