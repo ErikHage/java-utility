@@ -33,6 +33,12 @@ public interface OperationChain<I> {
      */
     OperationChain<I> validate(Validation<I> validation);
 
+    /**
+     * Validates the current state of the OperationChain
+     * @param validationName String - The name of the validation
+     * @param validation Validation<Input>
+     * @return OperationChain<Input>
+     */
     OperationChain<I> validate(String validationName, Consumer<I> validation);
 
     I getState();
