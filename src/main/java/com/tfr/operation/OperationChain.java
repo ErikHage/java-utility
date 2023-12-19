@@ -41,6 +41,10 @@ public interface OperationChain<I> {
      */
     OperationChain<I> validate(String validationName, Consumer<I> validation);
 
+    /**
+     * Get the current state of the OperationChain
+     * @return I
+     */
     I getState();
 
     AuditTrail getAuditTrail();
