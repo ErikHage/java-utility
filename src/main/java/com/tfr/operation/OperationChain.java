@@ -47,5 +47,10 @@ public interface OperationChain<I> {
      */
     I getState();
 
+    /**
+     * Get the audit trail of the OperationChain, describing the outcome of
+     * any completed or errored transformations and validations.
+     * @return AuditTrail
+     */
     AuditTrail getAuditTrail();
 }
