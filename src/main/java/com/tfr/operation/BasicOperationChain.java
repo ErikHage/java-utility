@@ -9,6 +9,10 @@ import com.tfr.operation.validation.Validation;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+/**
+ * An implementation of an OperationChain that audits the transformation and validation steps
+ * @param <I> type of state held
+ */
 public class BasicOperationChain<I> implements OperationChain<I> {
     private final I state;
     private final AuditTrail auditTrail;
