@@ -27,6 +27,12 @@ public class BasicOperationChain<I> implements OperationChain<I> {
         this.auditTrail = auditTrail;
     }
 
+    /**
+     * Create an instance of BasicOperationChain with the given initial state
+     * @param input initial state
+     * @return BasicOperationChain
+     * @param <I> state type
+     */
     public static <I> BasicOperationChain<I> of(I input) {
         return new BasicOperationChain<>(input);
     }
