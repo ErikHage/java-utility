@@ -47,6 +47,12 @@ public class BasicOperationChain<I> implements OperationChain<I> {
        return transform(operation.getName(), operation::execute);
     }
 
+    /**
+     * Transform the state of the OperationChain from the input type I to the output type O
+     * @param operationName String
+     * @param operation Operation<Input, Output>
+     * @return OperationChain<O>
+     */
     @Override
     public <O> OperationChain<O> transform(String operationName, Function<I, O> operation) {
         try {
