@@ -70,6 +70,12 @@ public class BasicOperationChain<I> implements OperationChain<I> {
         return validate(validation.getName(), validation::validate);
     }
 
+    /**
+     * Validates the current state of the OperationChain
+     * @param validationName String - The name of the validation
+     * @param validation Validation<Input>
+     * @return OperationChain<Input>
+     */
     @Override
     public OperationChain<I> validate(String validationName, Consumer<I> validation) {
         try {
