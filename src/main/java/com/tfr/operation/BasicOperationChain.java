@@ -65,6 +65,11 @@ public class BasicOperationChain<I> implements OperationChain<I> {
         }
     }
 
+    /**
+     * Validates the current state of the OperationChain
+     * @param validation Validation<Input>
+     * @return OperationChain<Input>
+     */
     @Override
     public OperationChain<I> validate(Validation<I> validation) {
         return validate(validation.getName(), validation::validate);
