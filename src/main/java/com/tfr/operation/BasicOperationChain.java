@@ -93,6 +93,10 @@ public class BasicOperationChain<I> implements OperationChain<I> {
         }
     }
 
+    /**
+     * Get the current state of the OperationChain
+     * @return I
+     */
     @Override
     public I getState() {
         return state;
