@@ -102,6 +102,11 @@ public class BasicOperationChain<I> implements OperationChain<I> {
         return state;
     }
 
+    /**
+     * Get the audit trail of the OperationChain, describing the outcome of
+     * any completed or errored transformations and validations.
+     * @return AuditTrail
+     */
     @Override
     public AuditTrail getAuditTrail() {
         return auditTrail;
