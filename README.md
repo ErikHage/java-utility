@@ -14,4 +14,11 @@ Includes utility classes for math and collections operations, among other things
 - Utility Methods
 
 ### Lazy
-- Lazily loaded fields 
+- Lazily loaded fields
+
+### Math
+- Expression Evaluation
+- Points
+- Vectors
+- Trig
+- Probability
