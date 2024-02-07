@@ -31,4 +31,6 @@ Includes utility classes for math and collections operations, among other things
 - Writer
 
 
-### 
+### Operation Chain
+- Basic
+- Short Circuit
