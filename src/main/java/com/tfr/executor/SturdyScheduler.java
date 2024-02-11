@@ -37,6 +37,10 @@ public class SturdyScheduler {
         );
     }
 
+    void stopAll() {
+        scheduledExecutorService.shutdown();
+    }
+
     private static void runWithExceptionHandling(final Runnable command)
     {
         try
