@@ -4,10 +4,10 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-public class ExceptionHandlingScheduler {
+public class SturdyScheduler {
     private final ScheduledExecutorService scheduledExecutorService;
 
-    public ExceptionHandlingScheduler(ScheduledExecutorService scheduledExecutorService) {
+    public SturdyScheduler(ScheduledExecutorService scheduledExecutorService) {
         this.scheduledExecutorService = scheduledExecutorService;
     }
 
@@ -20,6 +20,19 @@ public class ExceptionHandlingScheduler {
                 () -> runWithExceptionHandling(command),
                 initialDelay,
                 period,
+                unit
+        );
+    }
+
+    ScheduledFuture<?> scheduleWithFixedDelay(
+            Runnable command,
+            long initialDelay,
+            long delay,
+            TimeUnit unit) {
+        return scheduledExecutorService.scheduleWithFixedDelay(
+                () -> runWithExceptionHandling(command),
+                initialDelay,
+                delay,
                 unit
         );
     }
