@@ -1,5 +1,6 @@
 package com.tfr.executor;
 
+import org.jmock.lib.concurrent.DeterministicScheduler;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -7,29 +8,27 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class SturdySchedulerTest {
 
+    private final DeterministicScheduler deterministicScheduler = new DeterministicScheduler();
     private final SturdyScheduler sturdyScheduler = new SturdyScheduler(
             "sturdy-scheduler-unit-test",
-            Executors.newScheduledThreadPool(2));
-
-    @AfterEach
-    public void tearDown() {
-        sturdyScheduler.shutdown();
-    }
+            deterministicScheduler);
 
     @Test
-    void when() {
+    void shouldInvokeCommandAtIntervals() {
         AtomicInteger counter = new AtomicInteger();
 
         Runnable command = counter::incrementAndGet;
 
-        sturdyScheduler.scheduleAtFixedRate(command, 0, 50, TimeUnit.MILLISECONDS);
+        sturdyScheduler.scheduleAtFixedRate(command, 50L, 50L, TimeUnit.MILLISECONDS);
 
-        // wait a bit
+        deterministicScheduler.tick(50L, TimeUnit.MILLISECONDS);
+        assertEquals(1, counter.get());
 
-        // assert counter is counting
-
-        // stop
+        deterministicScheduler.tick(50L, TimeUnit.MILLISECONDS);
+        assertEquals(2, counter.get());
     }
 }
