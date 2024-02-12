@@ -1,14 +1,28 @@
 package com.tfr.executor;
 
+import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-public class SturdyScheduler {
+public class SturdyScheduler implements SafeExecutor {
+    private final String threadName;
     private final ScheduledExecutorService scheduledExecutorService;
 
-    public SturdyScheduler(ScheduledExecutorService scheduledExecutorService) {
+    public SturdyScheduler(String threadName, ScheduledExecutorService scheduledExecutorService) {
+        this.threadName = threadName;
         this.scheduledExecutorService = scheduledExecutorService;
+    }
+
+    ScheduledFuture<?> schedule(
+            Runnable command,
+            long initialDelay,
+            TimeUnit unit) {
+        return scheduledExecutorService.schedule(
+                () -> runWithExceptionHandling(command),
+                initialDelay,
+                unit
+        );
     }
 
     ScheduledFuture<?> scheduleAtFixedRate(
@@ -37,10 +51,6 @@ public class SturdyScheduler {
         );
     }
 
-    void stopAll() {
-        scheduledExecutorService.shutdown();
-    }
-
     private static void runWithExceptionHandling(final Runnable command)
     {
         try
@@ -53,5 +63,25 @@ public class SturdyScheduler {
             e.printStackTrace();
             // log some stuff
         }
+    }
+
+    @Override
+    public String getName() {
+        return threadName;
+    }
+
+    @Override
+    public void shutdown() {
+        scheduledExecutorService.shutdown();
+    }
+
+    @Override
+    public List<Runnable> shutdownNow() {
+        return scheduledExecutorService.shutdownNow();
+    }
+
+    @Override
+    public boolean awaitTermination(long timeout, TimeUnit timeUnit) throws InterruptedException {
+        return scheduledExecutorService.awaitTermination(timeout, timeUnit);
     }
 }
