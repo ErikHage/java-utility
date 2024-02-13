@@ -36,5 +36,9 @@ Includes utility classes for math and collections operations, among other things
 - Short Circuit
 
 
+## Executors
+- SturdyScheduler
+
+
 ### Testing
 - Test Utils
