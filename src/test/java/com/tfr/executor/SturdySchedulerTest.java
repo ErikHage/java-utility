@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -63,5 +64,31 @@ public class SturdySchedulerTest {
 
         deterministicScheduler.tick(10L, TimeUnit.MILLISECONDS);
         assertEquals(1, counter.get());
+    }
+
+    @Test
+    void shouldInvokeAtIntervalsEvenAfterFailure() {
+        AtomicInteger counter = new AtomicInteger(0);
+        AtomicBoolean threwException = new AtomicBoolean(false);
+
+        Runnable command = () -> {
+            if (!threwException.get()) {
+                threwException.set(true);
+                throw new RuntimeException("oops");
+            } else {
+                counter.incrementAndGet();
+            }
+        };
+
+        sturdyScheduler.scheduleWithFixedDelay(command, 50L, 50L, TimeUnit.MILLISECONDS);
+
+        deterministicScheduler.tick(50L, TimeUnit.MILLISECONDS);
+        assertEquals(0, counter.get());
+
+        deterministicScheduler.tick(50L, TimeUnit.MILLISECONDS);
+        assertEquals(1, counter.get());
+
+        deterministicScheduler.tick(50L, TimeUnit.MILLISECONDS);
+        assertEquals(2, counter.get());
     }
 }
