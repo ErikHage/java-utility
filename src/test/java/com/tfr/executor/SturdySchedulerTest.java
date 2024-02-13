@@ -64,6 +64,9 @@ public class SturdySchedulerTest {
 
         deterministicScheduler.tick(10L, TimeUnit.MILLISECONDS);
         assertEquals(1, counter.get());
+
+        deterministicScheduler.tick(50L, TimeUnit.MILLISECONDS);
+        assertEquals(2, counter.get());
     }
 
     @Test
