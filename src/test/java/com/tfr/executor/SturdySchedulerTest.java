@@ -18,7 +18,25 @@ public class SturdySchedulerTest {
             deterministicScheduler);
 
     @Test
-    void shouldInvokeCommandAtIntervals() {
+    void shouldInvokeCommandOnceAfterInitialDelay() {
+        AtomicInteger counter = new AtomicInteger();
+
+        Runnable command = counter::incrementAndGet;
+
+        sturdyScheduler.schedule(command, 50L, TimeUnit.MILLISECONDS);
+
+        deterministicScheduler.tick(40L, TimeUnit.MILLISECONDS);
+        assertEquals(0, counter.get());
+
+        deterministicScheduler.tick(10L, TimeUnit.MILLISECONDS);
+        assertEquals(1, counter.get());
+
+        deterministicScheduler.tick(1000L, TimeUnit.MILLISECONDS);
+        assertEquals(1, counter.get());
+    }
+
+    @Test
+    void shouldInvokeCommandAtFixedIntervals() {
         AtomicInteger counter = new AtomicInteger();
 
         Runnable command = counter::incrementAndGet;
@@ -30,5 +48,20 @@ public class SturdySchedulerTest {
 
         deterministicScheduler.tick(50L, TimeUnit.MILLISECONDS);
         assertEquals(2, counter.get());
+    }
+
+    @Test
+    void shouldInvokeCommandAtIntervalsAfterDelay() {
+        AtomicInteger counter = new AtomicInteger();
+
+        Runnable command = counter::incrementAndGet;
+
+        sturdyScheduler.scheduleWithFixedDelay(command, 50L, 50L, TimeUnit.MILLISECONDS);
+
+        deterministicScheduler.tick(40L, TimeUnit.MILLISECONDS);
+        assertEquals(0, counter.get());
+
+        deterministicScheduler.tick(10L, TimeUnit.MILLISECONDS);
+        assertEquals(1, counter.get());
     }
 }
