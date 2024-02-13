@@ -5,6 +5,11 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * A wrapper for ScheduledExecutorService that fixes the bear trap problem. If a scheduled command
+ * throws an exception, it is caught and logged without being rethrown. The scheduler will execute
+ * the command again as scheduled.
+ */
 public class SturdyScheduler implements SafeExecutor {
     private final String threadName;
     private final ScheduledExecutorService scheduledExecutorService;
@@ -60,7 +65,6 @@ public class SturdyScheduler implements SafeExecutor {
         catch (final Exception e)
         {
             System.out.println("Failed, boo");
-            e.printStackTrace();
             // log some stuff
         }
     }
