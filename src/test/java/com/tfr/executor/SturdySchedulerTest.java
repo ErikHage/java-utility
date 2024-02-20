@@ -1,10 +1,8 @@
 package com.tfr.executor;
 
 import org.jmock.lib.concurrent.DeterministicScheduler;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
