@@ -1,6 +1,6 @@
 # Java Utility
 
-Includes utility classes for math and collections operations, among other things
+Includes utility classes for math, collections, operations, scheduling
 
 ### Collections
 - Heap
