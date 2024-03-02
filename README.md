@@ -36,8 +36,9 @@ Includes utility classes for math, collections, operations, scheduling
 - Short Circuit
 
 
-## Executors
-- SturdyScheduler
+## Executors  
+- SturdyScheduler  
+  - A wrapper around java.util.concurrent.ScheduledExecutorService that will continue to invoke the scheduled process as configured even if an exception is thrown during an invocation. The default behavior of ScheduledExecutorService will not invoke the process again in that scenario. 
 
 
 ### Testing
