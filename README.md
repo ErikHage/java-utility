@@ -33,6 +33,7 @@ Includes utility classes for math, collections, operations, scheduling
 
 ### Operation Chain
 - Basic
+  - Wraps an object and provides methods to perform Transformations and Validations on that object. Keeps an audit trail of the results of all of these actions and their results.
 - Short Circuit
 
 
