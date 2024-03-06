@@ -11,6 +11,7 @@ Includes utility classes for math, collections, operations, scheduling
 
 ### Either
 - Left/Right
+  - An Either can be either a left or a right, and has methods that covers both cases
 - Utility Methods
 
 
