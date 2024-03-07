@@ -6,6 +6,7 @@ Includes utility classes for math, collections, operations, scheduling
 - Heap
 - Quad Tree
 - Ring Buffer
+  - A fixed size array that overwrites itself in a circular sequence
 - Trie (2 ways)
 
 
