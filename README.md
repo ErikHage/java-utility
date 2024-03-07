@@ -13,6 +13,7 @@ Includes utility classes for math, collections, operations, scheduling
 - Left/Right
   - An Either can be either a left or a right, and has methods that covers both cases
 - Utility Methods
+  - A collection of methods to help use Eithers in streams 
 
 
 ### Lazy
