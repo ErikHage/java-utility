@@ -5,6 +5,7 @@ Includes utility classes for math, collections, operations, scheduling
 ### Collections
 - Heap
 - Quad Tree
+  - A tree in which each node can have up to 4 children
 - Ring Buffer
   - A fixed size array that overwrites itself in a circular sequence
 - Trie (2 ways)
