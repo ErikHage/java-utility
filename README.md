@@ -13,6 +13,7 @@ Includes utility classes for math, collections, operations, scheduling
 - Ring Buffer
   - A fixed size array that overwrites itself in a circular sequence
 - Trie (2 ways)
+  - A type of search tree used for locating specific keys from within a set (strings)
 
 
 ### Either
