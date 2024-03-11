@@ -25,6 +25,7 @@ Includes utility classes for math, collections, operations, scheduling
 
 ### Lazy
 - Lazily loaded fields
+  - Lazily loads a value of type T using a Supplier provided upon instantiation
 
 
 ### Math
