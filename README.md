@@ -31,6 +31,7 @@ Includes utility classes for math, collections, operations, scheduling
 ### Math
 - Expression Evaluation
 - Points
+  - Representation of a point in space, with x, y, and z coordinates
 - Vectors
 - Trig
 - Probability
