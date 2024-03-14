@@ -33,6 +33,7 @@ Includes utility classes for math, collections, operations, scheduling
 - Points
   - Representation of a point in space, with x, y, and z coordinates
 - Vectors
+  - Representation of a vector, with x, y, and z magnitudes and a direction
 - Trig
 - Probability
 
