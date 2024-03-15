@@ -35,6 +35,7 @@ Includes utility classes for math, collections, operations, scheduling
 - Vectors
   - Representation of a vector, with x, y, and z magnitudes and a direction
 - Trig
+  - Some trigonometric functions for working with vectors
 - Probability
 
 
