@@ -37,7 +37,7 @@ Includes utility classes for math, collections, operations, scheduling
 - Trig
   - Some trigonometric functions for working with vectors
 - Probability
-  - xx
+  - Functionality to use weighted probabilities 
 
 
 ### Monad
