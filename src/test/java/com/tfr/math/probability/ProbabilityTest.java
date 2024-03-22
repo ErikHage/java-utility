@@ -12,4 +12,11 @@ public class ProbabilityTest {
     void shouldCalculateTheProbability() {
         assertEquals(BigDecimal.valueOf(0.1), Probability.probability(10, 90));
     }
+
+    @Test
+    void shouldCalculateTheMean() {
+        double mean = Probability.mean(1.0, 2.0, 3.0, 4.0, 5.0);
+
+        assertEquals(3.0, mean);
+    }
 }
