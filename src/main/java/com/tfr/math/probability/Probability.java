@@ -18,4 +18,17 @@ public class Probability {
 
         return total / nums.length;
     }
+
+    public static Double median(Double... nums) {
+        if (nums.length == 0) {
+            return null;
+        }
+
+        Arrays.sort(nums);
+        if (nums.length % 2 == 1) {
+            return nums[nums.length/2];
+        } else {
+            return mean(nums[nums.length/2], nums[nums.length/2 + 1]);
+        }
+    }
 }
