@@ -28,7 +28,9 @@ public class Probability {
         if (nums.length % 2 == 1) {
             return nums[nums.length/2];
         } else {
-            return mean(nums[nums.length/2], nums[nums.length/2 + 1]);
+            Double num1 = nums[(nums.length - 1) / 2];
+            Double num2 = nums[(nums.length - 1) / 2 + 1];
+            return mean(num1, num2);
         }
     }
 }

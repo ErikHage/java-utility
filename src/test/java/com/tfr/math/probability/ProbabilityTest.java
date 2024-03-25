@@ -26,4 +26,11 @@ public class ProbabilityTest {
 
         assertEquals(3.0, median);
     }
+
+    @Test
+    void shouldCalculateTheMedianForAnEvenSet() {
+        Double median = Probability.median(1.0, 2.0, 3.0, 4.0);
+
+        assertEquals(2.5, median);
+    }
 }
