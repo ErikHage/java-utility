@@ -21,6 +21,13 @@ public class ProbabilityTest {
     }
 
     @Test
+    void shouldCalculateTheMeanOfASetOfOne() {
+        double mean = Probability.mean(3.0);
+
+        assertEquals(3.0, mean);
+    }
+
+    @Test
     void shouldCalculateTheMedianForAnOddSet() {
         Double median = Probability.median(1.0, 2.0, 5.0, 3.0, 4.0);
 
