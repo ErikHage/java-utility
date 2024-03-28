@@ -40,4 +40,11 @@ public class ProbabilityTest {
 
         assertEquals(2.5, median);
     }
+
+    @Test
+    void shouldCalculateTheMedianOfASetOfOne() {
+        double mean = Probability.median(3.0);
+
+        assertEquals(3.0, mean);
+    }
 }
