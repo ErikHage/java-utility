@@ -47,4 +47,11 @@ public class ProbabilityTest {
 
         assertEquals(3.0, mean);
     }
+
+    @Test
+    void shouldCalculateMode() {
+        Double mode = Probability.mode(1.0, 2.0, 2.0, 3.0);
+
+        assertEquals(2.0, mode);
+    }
 }
