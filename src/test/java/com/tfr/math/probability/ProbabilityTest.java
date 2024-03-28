@@ -43,7 +43,7 @@ public class ProbabilityTest {
 
     @Test
     void shouldCalculateTheMedianOfASetOfOne() {
-        double mean = Probability.median(3.0);
+        Double mean = Probability.median(3.0);
 
         assertEquals(3.0, mean);
     }
