@@ -54,4 +54,11 @@ public class ProbabilityTest {
 
         assertEquals(2.0, mode);
     }
+
+    @Test
+    void shouldCalculateModeOfASetOfOne() {
+        Double mode = Probability.mode(1.0);
+
+        assertEquals(1.0, mode);
+    }
 }
