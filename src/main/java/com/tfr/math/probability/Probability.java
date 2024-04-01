@@ -37,7 +37,11 @@ public class Probability {
         }
     }
 
-    public static double mode(double... nums) {
+    public static Double mode(double... nums) {
+        if (nums.length == 0) {
+            return null;
+        }
+
         Map<Double, Integer> counts = new HashMap<>();
 
         for (double num : nums) {
@@ -53,6 +57,6 @@ public class Probability {
             }
         }
 
-        return highestCount.getValue();
+        return highestCount.getKey();
     }
 }
