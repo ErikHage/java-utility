@@ -13,7 +13,7 @@ public class Probability {
         return BigDecimal.valueOf((double) numberOfFavorableOutcomes / (numberOfFavorableOutcomes + numberOfUnfavorableOutcomes));
     }
 
-    public static double mean(double... nums) {
+    public static Double mean(double... nums) {
         double total = 0;
         for (double num : nums) {
             total += num;

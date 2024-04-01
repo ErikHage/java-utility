@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ProbabilityTest {
 
@@ -15,14 +16,14 @@ public class ProbabilityTest {
 
     @Test
     void shouldCalculateTheMean() {
-        double mean = Probability.mean(1.0, 2.0, 3.0, 4.0, 5.0);
+        Double mean = Probability.mean(1.0, 2.0, 3.0, 4.0, 5.0);
 
         assertEquals(3.0, mean);
     }
 
     @Test
     void shouldCalculateTheMeanOfASetOfOne() {
-        double mean = Probability.mean(3.0);
+        Double mean = Probability.mean(3.0);
 
         assertEquals(3.0, mean);
     }
@@ -46,6 +47,13 @@ public class ProbabilityTest {
         Double mean = Probability.median(3.0);
 
         assertEquals(3.0, mean);
+    }
+
+    @Test
+    void shouldReturnNullMedianForNoNumbers() {
+        Double mean = Probability.median();
+
+        assertNull(mean);
     }
 
     @Test
