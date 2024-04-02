@@ -69,4 +69,11 @@ public class ProbabilityTest {
 
         assertEquals(1.0, mode);
     }
+
+    @Test
+    void shouldReturnNullModeForNoNumbers() {
+        Double mode = Probability.mode();
+
+        assertNull(mode);
+    }
 }
