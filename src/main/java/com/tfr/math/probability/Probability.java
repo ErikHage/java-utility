@@ -1,6 +1,5 @@
 package com.tfr.math.probability;
 
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,6 +13,10 @@ public class Probability {
     }
 
     public static Double mean(double... nums) {
+        if (nums.length == 0) {
+            return null;
+        }
+
         double total = 0;
         for (double num : nums) {
             total += num;
@@ -22,7 +25,7 @@ public class Probability {
         return total / nums.length;
     }
 
-    public static Double median(Double... nums) {
+    public static Double median(double... nums) {
         if (nums.length == 0) {
             return null;
         }

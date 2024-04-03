@@ -29,6 +29,13 @@ public class ProbabilityTest {
     }
 
     @Test
+    void shouldCalculateTheMeanFroNoNumbers() {
+        Double mean = Probability.mean();
+
+        assertNull(mean);
+    }
+
+    @Test
     void shouldCalculateTheMedianForAnOddSet() {
         Double median = Probability.median(1.0, 2.0, 5.0, 3.0, 4.0);
 
