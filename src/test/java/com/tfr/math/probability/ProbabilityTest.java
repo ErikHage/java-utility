@@ -65,9 +65,9 @@ public class ProbabilityTest {
 
     @Test
     void shouldCalculateMode() {
-        Double mode = Probability.mode(1.0, 2.0, 2.0, 3.0);
+        Double mode = Probability.mode(1.0, 1.0, 2.0, 3.0, 2.0, 1.0);
 
-        assertEquals(2.0, mode);
+        assertEquals(1.0, mode);
     }
 
     @Test
