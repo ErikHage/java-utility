@@ -62,4 +62,24 @@ public class Probability {
 
         return highestCount.getKey();
     }
+
+    public static Double range(double... nums) {
+        if (nums.length == 0) {
+            return null;
+        }
+
+        double highest = nums[0];
+        double lowest = nums[0];
+
+        for (double num: nums) {
+            if (num > highest) {
+                highest = num;
+            }
+            if (num < lowest) {
+                lowest = num;
+            }
+        }
+
+        return highest - lowest;
+    }
 }
