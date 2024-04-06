@@ -1,4 +1,4 @@
-package com.tfr.math.probability;
+package com.tfr.math.statistics;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class Probability {
+public class Statistics {
 
     public static BigDecimal probability(int numberOfFavorableOutcomes, int numberOfUnfavorableOutcomes) {
         return BigDecimal.valueOf((double) numberOfFavorableOutcomes / (numberOfFavorableOutcomes + numberOfUnfavorableOutcomes));

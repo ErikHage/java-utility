@@ -1,4 +1,4 @@
-package com.tfr.math.probability;
+package com.tfr.math.statistics;
 
 import java.security.InvalidParameterException;
 import java.util.NavigableMap;
