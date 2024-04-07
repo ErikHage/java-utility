@@ -8,10 +8,6 @@ import java.util.Map.Entry;
 
 public class Statistics {
 
-    public static BigDecimal probability(int numberOfFavorableOutcomes, int numberOfUnfavorableOutcomes) {
-        return BigDecimal.valueOf((double) numberOfFavorableOutcomes / (numberOfFavorableOutcomes + numberOfUnfavorableOutcomes));
-    }
-
     public static Double mean(double... nums) {
         if (nums.length == 0) {
             return null;

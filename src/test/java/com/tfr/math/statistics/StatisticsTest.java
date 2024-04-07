@@ -10,11 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class StatisticsTest {
 
     @Test
-    void shouldCalculateTheProbability() {
-        assertEquals(BigDecimal.valueOf(0.1), Statistics.probability(10, 90));
-    }
-
-    @Test
     void shouldCalculateTheMean() {
         Double mean = Statistics.mean(1.0, 2.0, 3.0, 4.0, 5.0);
 
