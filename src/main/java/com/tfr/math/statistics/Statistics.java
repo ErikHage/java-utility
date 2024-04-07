@@ -1,5 +1,7 @@
 package com.tfr.math.statistics;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,14 +9,15 @@ import java.util.Map.Entry;
 
 public class Statistics {
 
-    public static Double mean(double... nums) {
+    public static <T extends Number> Double mean(T... nums) {
         if (nums.length == 0) {
             return null;
         }
+        assertSupportedTypes(nums);
 
-        double total = 0;
-        for (double num : nums) {
-            total += num;
+        double total = 0.0;
+        for (T num : nums) {
+            total += num.doubleValue();
         }
 
         return total / nums.length;
@@ -76,5 +79,13 @@ public class Statistics {
         }
 
         return highest - lowest;
+    }
+
+    private static void assertSupportedTypes(Number... nums) {
+        for(Number num : nums) {
+            if (num instanceof BigInteger || num instanceof BigDecimal) {
+                throw new IllegalArgumentException("BigDecimal and BigInteger not yet supported");
+            }
+        }
     }
 }
