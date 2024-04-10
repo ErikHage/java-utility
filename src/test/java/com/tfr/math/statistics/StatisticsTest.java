@@ -78,4 +78,11 @@ public class StatisticsTest {
 
         assertNull(mode);
     }
+
+    @Test
+    void shouldReturnRange() {
+        Double range = Statistics.range(1, 2, 3, 4, 5);
+
+        assertEquals(4, range);
+    }
 }
