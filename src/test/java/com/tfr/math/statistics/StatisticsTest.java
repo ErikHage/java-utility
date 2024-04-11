@@ -85,4 +85,11 @@ public class StatisticsTest {
 
         assertEquals(4, range);
     }
+
+    @Test
+    void shouldReturnRangeForSetOfOne() {
+        Double range = Statistics.range(1);
+
+        assertEquals(0, range);
+    }
 }
