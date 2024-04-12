@@ -39,6 +39,8 @@ Includes utility classes for math, collections, operations, scheduling
 - Probability
   - Weighted Probability
     - Functionality to use weighted probabilities for a given set of items and weights
+  - Statistics
+    - Utility methods for stats (mean, median, etc.)
 
 
 ### Monad
