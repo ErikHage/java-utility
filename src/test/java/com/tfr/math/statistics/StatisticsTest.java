@@ -92,4 +92,11 @@ public class StatisticsTest {
 
         assertEquals(0, range);
     }
+
+    @Test
+    void shouldReturnRangeForSetOfZero() {
+        Double range = Statistics.range();
+
+        assertNull(range);
+    }
 }
