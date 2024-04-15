@@ -81,6 +81,18 @@ public class Statistics {
         return highest - lowest;
     }
 
+    public static Double standardDeviation(Double... nums) {
+        int length = nums.length;
+        Double mean = Statistics.mean(nums);
+
+        double sum = 0.0;
+        for (Double num: nums) {
+            sum += Math.pow(num - mean, 2);
+        }
+
+        return Math.sqrt(sum / length);
+    }
+
     private static void assertSupportedTypes(Number... nums) {
         for(Number num : nums) {
             if (num instanceof BigInteger || num instanceof BigDecimal) {
