@@ -81,7 +81,11 @@ public class Statistics {
         return highest - lowest;
     }
 
-    public static Double standardDeviation(Double... nums) {
+    public static Double standardDeviationOfPopulation(Double... nums) {
+        if (nums.length == 0) {
+            return null;
+        }
+
         int length = nums.length;
         Double mean = Statistics.mean(nums);
 
