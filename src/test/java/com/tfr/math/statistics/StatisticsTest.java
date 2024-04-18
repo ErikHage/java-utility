@@ -106,4 +106,11 @@ public class StatisticsTest {
 
         assertEquals(0.4, result);
     }
+
+    @Test
+    void shouldReturnNullForStandardDeviationOfNull() {
+        Double result = Statistics.standardDeviationOfPopulation();
+
+        assertNull(result);
+    }
 }
