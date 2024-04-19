@@ -108,6 +108,13 @@ public class StatisticsTest {
     }
 
     @Test
+    void shouldCalculateStandardDeviationOfPopulationOfOne() {
+        Double result = Statistics.standardDeviationOfPopulation(1.0);
+
+        assertEquals(0, result);
+    }
+
+    @Test
     void shouldReturnNullForStandardDeviationOfNull() {
         Double result = Statistics.standardDeviationOfPopulation();
 
