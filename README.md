@@ -36,7 +36,7 @@ Includes utility classes for math, collections, operations, scheduling
   - Representation of a vector, with x, y, and z magnitudes and a direction
 - Trig
   - Some trigonometric functions for working with vectors
-- Probability
+- Statistics & Probability
   - Weighted Probability
     - Functionality to use weighted probabilities for a given set of items and weights
   - Statistics
