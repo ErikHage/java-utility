@@ -22,18 +22,18 @@ class StxTransformerTest {
 <?xml version="1.0" encoding="UTF-8"?>
 <root><a>a</a><b>b</b></root>
 """;
-
         final String stx = """
-                <stx:transform version="1.0" xmlns:stx="http://stx.sourceforge.net/2002/ns">
-                    <stx:template match="root/a">
+                <stx:transform version="1.0" pass-through="all" xmlns:stx="http://stx.sourceforge.net/2002/ns">
+                    <stx:template match="root">
                         <stx:copy>
                             <stx:process-attributes/>
                             <stx:process-children/>
+                            <b>b</b>
                         </stx:copy>
-                        <b>b</b>
                     </stx:template>
                 </stx:transform>
                 """;
+
         final String output = transformer.transform(stx, input);
 
         assertEquals(expectedOutput, output);
