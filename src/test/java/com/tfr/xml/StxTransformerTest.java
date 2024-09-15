@@ -12,16 +12,14 @@ class StxTransformerTest {
 
     @Test
     void shouldAddANewNode() throws TransformerException {
-        final String input =
-"""
-<?xml version="1.0" encoding="UTF-8"?>
-<root><a>a</a></root>
-""";
-        final String expectedOutput =
-"""
-<?xml version="1.0" encoding="UTF-8"?>
-<root><a>a</a><b>b</b></root>
-""";
+        final String input = """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <root><a>a</a></root>
+                """;
+        final String expectedOutput = """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <root><a>a</a><b>b</b></root>
+                """;
         final String stx = """
                 <stx:transform version="1.0" pass-through="all" xmlns:stx="http://stx.sourceforge.net/2002/ns">
                     <stx:template match="root">
