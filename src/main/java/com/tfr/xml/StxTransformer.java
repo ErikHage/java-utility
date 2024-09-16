@@ -27,4 +27,31 @@ public class StxTransformer {
         return writer.toString();
     }
 
+    public static void main(String[] args) throws TransformerException {
+        final StxTransformer stxTransformer = new StxTransformer();
+
+        final String input = """
+                <orders type="collection">
+                    <size class="int">1</size>
+                    <element class="com.tfr.UserInfo">
+                        <name>Erik</name>
+                        <address>
+                            <street>100 West Street</street>
+                            <zip>12345</zip>
+                        </address>
+                    </element>
+                </orders>
+                """;
+
+        final String stx = """
+                <stx:transform version="1.0" pass-through="none" xmlns:stx="http://stx.sourceforge.net/2002/ns">
+                    <stx:template match="*[@class='com.tfr.UserInfo']/address">
+                        <stx:copy>some whole new content</stx:copy>
+                    </stx:template>
+                </stx:transform>
+                """;
+
+
+        System.out.println(stxTransformer.transform(stx, input));
+    }
 }
