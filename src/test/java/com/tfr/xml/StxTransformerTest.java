@@ -100,4 +100,29 @@ class StxTransformerTest {
         assertEquals(expectedOutput1, output1);
         assertEquals(expectedOutput2, output2);
     }
+
+    @Test
+    void shouldHandlePassThroughNone() throws TransformerException {
+        final String input = """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <root><a>a</a><b>b</b></root>
+                """;
+        final String expectedOutput = """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <root><c>c</c></root>
+                """;
+        final String stx = """
+                <stx:transform version="1.0" pass-through="none" xmlns:stx="http://stx.sourceforge.net/2002/ns">
+                    <stx:template match="root">
+                        <stx:copy>
+                            <c>c</c>
+                        </stx:copy>
+                    </stx:template>
+                </stx:transform>
+                """;
+
+        final String output = transformer.transform(stx, input);
+
+        assertEquals(expectedOutput, output);
+    }
 }
