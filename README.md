@@ -56,7 +56,7 @@ Includes utility classes for math, collections, operations, scheduling
   - If a failure occurs, a ShortCircuitOperationChain is substituted for the BasicOperationChain, which skips all transformations and validations to the end of the chain.  
 
 
-## Executors  
+### Executors  
 - SturdyScheduler  
   - A wrapper around java.util.concurrent.ScheduledExecutorService that will continue to invoke the scheduled process as configured even if an exception is thrown during an invocation. The default behavior of ScheduledExecutorService will not invoke the process again in that scenario. 
 
