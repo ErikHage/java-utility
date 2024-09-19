@@ -60,6 +60,9 @@ Includes utility classes for math, collections, operations, scheduling
 - SturdyScheduler  
   - A wrapper around java.util.concurrent.ScheduledExecutorService that will continue to invoke the scheduled process as configured even if an exception is thrown during an invocation. The default behavior of ScheduledExecutorService will not invoke the process again in that scenario. 
 
+### XML  
+- STX (Streaming Transformations for XML)
+  - utility to transform an xml string into another via STX file
 
 ### Testing
 - Test Utils
