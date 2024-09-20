@@ -14,6 +14,13 @@ public class StxTransformer {
         factory = TransformerFactory.newInstance("net.sf.joost.trax.TransformerFactoryImpl", null);
     }
 
+    /**
+     * Transform a given xml string using a given STX file
+     * @param stx - stx transformation
+     * @param xmlInput - input xml for transformation
+     * @return String - transformed xml
+     * @throws TransformerException
+     */
     public String transform(final String stx, final String xmlInput) throws TransformerException {
         Source stxSource = new StreamSource(new StringReader(stx));
         Transformer transformer = factory.newTransformer(stxSource);
