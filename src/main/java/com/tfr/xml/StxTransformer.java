@@ -19,7 +19,7 @@ public class StxTransformer {
      * @param stx - stx transformation
      * @param xmlInput - input xml for transformation
      * @return String - transformed xml
-     * @throws TransformerException
+     * @throws TransformerException if transformer not on classpath
      */
     public String transform(final String stx, final String xmlInput) throws TransformerException {
         Source stxSource = new StreamSource(new StringReader(stx));
