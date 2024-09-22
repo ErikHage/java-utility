@@ -6,6 +6,9 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.StringReader;
 import java.io.StringWriter;
 
+/**
+ * Contains methods to transform XML files using the Streaming Transformations for XML (STX) protocol
+ */
 public class StxTransformer {
 
     private final TransformerFactory factory;
