@@ -14,7 +14,11 @@ public class StxTransformer {
     private final TransformerFactory factory;
 
     public StxTransformer() {
-        factory = TransformerFactory.newInstance("net.sf.joost.trax.TransformerFactoryImpl", null);
+        this(net.sf.joost.trax.TransformerFactoryImpl.class);
+    }
+
+    public <T> StxTransformer(Class<T> clazz) {
+        factory = TransformerFactory.newInstance(clazz.getCanonicalName(), null);
     }
 
     /**
